@@ -7,6 +7,7 @@ const webpack = require("webpack");
 module.exports = {
   entry: "./app/main.js",
   mode: "development",
+  watch: true ,
   output: {
     filename: "index.js",
     path: path.resolve(__dirname, "dist"),
