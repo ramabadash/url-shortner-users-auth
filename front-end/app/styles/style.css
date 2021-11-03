@@ -7,6 +7,7 @@ body {
   color: #222;
   background-color:#869296;
   background-image: linear-gradient(315deg, #829196 0%, #c1cdd6 74%);
+  /* background-image: url("https://docrdsfx76ssb.cloudfront.net/static/1635458173/pages/wp-content/uploads/2019/03/linkshortening_mobile2.jpg"); */
   text-align: center;
   line-height: 1.4em;
 }
@@ -25,7 +26,7 @@ h1 {
 /* INPUT AREA */
 .input-container {
   background-color: rgba(48, 136, 136, 0.5);
-  margin-top: 10%;
+  margin-top: 5%;
 }
 legend {
   font-size: 2em;
@@ -116,9 +117,27 @@ button:focus {
   border-radius: 0.5em;
 }
 
+/* STATISTICS */
+#statistics {
+  display: none;
+  flex-direction: column;
+}
+#statistics-logo {
+  background-color: inherit;
+  height: 15em;
+  width: 20em;
+}
+
+/* LOGOS */
+/* #logo {
+  background-color: transparent;
+  height: 8em;
+  width: 12em;
+  float: left;
+} */
 /* FOOTER */
 footer {
-  background-color: #f1d996;
+  background-color: #f0da9f;
   /* background-color: rgb(177, 214, 206); */
   width: 100%;
   position: fixed;
