@@ -8,8 +8,10 @@ router.post("/", (req, res) => {
     const longUrl = req.body.longUrl;
     const id = '_' + Math.random().toString(36).substr(2, 9);
     const shortUrl = `${BASEURL}/${id}`;
-    const data = {"longUrl": longUrl, "shortUrl": shortUrl};
-    res.send(shortUrl);
+    const urlData = new UrlData(longUrl, id, shortUrl);
+    const saveResult = urlData.saveToInfoDir();
+    if(saveResult) res.send(saveResult);
+    else res.send(shortUrl);
 })
 
 //
