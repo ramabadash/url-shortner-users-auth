@@ -21,10 +21,19 @@ async function postUrl() {
     answerDiv.textContent = shortUrl;
     statisticsDiv.style.display = "flex";
 
-
     urlInput.value = "";
   } catch (error) {
-    console.log(error);
+    errorMessege(error.response.data.error);
     urlInput.value = "";
   }
+}
+
+//Display Error massege
+function errorMessege(messege) {
+  const errorElem = document.createElement('div');
+  errorElem.textContent = `Sorry ${messege}, please try again! ❌`;
+  errorElem.classList.add('error-messege');
+  const inputContainer = document.querySelector(".input-container");
+  inputContainer.appendChild(errorElem);
+  setTimeout(() => errorElem.remove(), 5000);
 }

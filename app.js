@@ -14,13 +14,13 @@ app.use(cors({
 
 app.use(express.json()) // parses requests as json
 
-app.use(validHandlerMiddleware);
 
 app.use("/", express.static(`./front-end/dist`));
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "./front-end/dist/index.html");
 });
 
+app.use(validHandlerMiddleware);
 app.use("/api", urlsRouter);
 
 app.use(errorHandlerMiddleware);

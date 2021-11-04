@@ -111,6 +111,12 @@ button:hover:after {
 button:focus {
 	outline: none;
 }
+/* ERROR */
+.error-messege {
+  color: #de463b;
+  font-size: 2em;
+  margin: 1em;
+}
 
 /* ANSWER */
 #answer {
