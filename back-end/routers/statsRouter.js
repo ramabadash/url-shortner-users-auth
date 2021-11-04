@@ -6,7 +6,6 @@ const fs = require("fs");
 router.get("/:id", (req, res)=> {
     try {
         const id = req.params.id;
-        console.log(id)
         const infoFilePath = path.resolve(__dirname, "../DB/info.json");
         const currentData = JSON.parse(fs.readFileSync(infoFilePath));
         const urlDataObj = currentData[id];
