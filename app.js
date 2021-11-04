@@ -3,9 +3,14 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT || 3000;
-const urlsRouter = require("./back-end/routers/urlsRouter");
+
+//MiddleWares
 const {errorHandlerMiddleware} = require("./back-end/middlewares/errorHandler");
 // const {validHandlerMiddleware} = require("./back-end/middlewares/validHandler");
+
+//Routers
+const urlsRouter = require("./back-end/routers/urlsRouter");
+const statsRouter = require("./back-end/routers/statsRouter");
 
 
 app.use(cors({
@@ -22,6 +27,7 @@ app.get("/", (req, res) => {
 
 // app.use(validHandlerMiddleware);
 app.use("/api", urlsRouter);
+app.use("/statistic", statsRouter);
 
 app.use(errorHandlerMiddleware);
 

@@ -4,6 +4,8 @@
   <head>
     <title>URL Shortener</title>
     <link rel="icon" type="image/png" href="../app/styles/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>  
     <link href="https://fonts.googleapis.com/css2?family=Heebo&family=Oxygen&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
@@ -11,18 +13,33 @@
   <script defer src="./index.js"></script></head>
 
   <body>
+    <!-- <img id="logo" src="../app/styles/logo.png"> -->
     <h1>URL Shortener Microservice</h1>
+    <!-- <img id= "logo" src="https://docrdsfx76ssb.cloudfront.net/static/1635458173/pages/wp-content/uploads/2019/03/linkshortening_mobile2.jpg"> -->
     <main>
       <section class="input-container">
-        <!-- <form action="api/shorturl/new" method="POST"> -->
-          <fieldset>
+          <!-- <fieldset> -->
             <legend>URL Shortener</legend>
             <input id="url_input" type="text" name="url" placeholder="Shorten youre link.." />
             <button id="submitBtn" class="noselect">SHORTEN</button>
-          </fieldset>
-        <!-- </form> -->
+          <!-- </fieldset> -->
       </section>
       <div id="answer"></div>
+
+      <div id="statistics">
+        <h3>STATISTICS</h3>
+        <div>
+          <input id="stat_input" type="text" placeholder="Check link statistics.." />
+          <button id="statsBtn" class="noselect">CHECK</button>
+        </div>
+        <div id="statistics-info">
+          <p id="creationDate"></p>
+          <p id="redirectCount"></p>
+          <p id="originalUrl"></p>
+          <p id="id"></p>
+        </div>
+        <img id="statistics-logo" loading="lazy" src="https://docrdsfx76ssb.cloudfront.net/static/1635458173/pages/wp-content/uploads/2019/03/dash-min.gif" alt="">
+      </div>
     </main>
     <footer>
       <p>By Rama badash - Cyber4s course assignment</p>
@@ -49,5 +66,6 @@
         </div>
       </div>
     </footer>
+    
   </body>
 </html>

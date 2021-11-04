@@ -40,6 +40,8 @@ router.get("/get/:id", (req, res) => {
 
 module.exports = router;
 
+/*---------- HELPERS ----------*/
+
 //Increases the url entry counter each time you enter it
 function updateUrlGetCount(id) {
     const infoFilePath = path.resolve(__dirname, "../DB/info.json");
