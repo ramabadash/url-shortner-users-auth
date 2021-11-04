@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Staatliches', cursive;
   font-size: 16px;
   color: #222;
   background-color:#869296;
@@ -19,23 +19,31 @@ main {
 
 /* HEADERS */
 h1 {
-  font-family:fantasy;
+  font-family: 'Staatliches', cursive;
+  letter-spacing: 4px;
   font-size: 3em;
+  color: whitesmoke;
 }
 
 /* INPUT AREA */
 .input-container {
   background-color: rgba(48, 136, 136, 0.5);
   margin-top: 5%;
+  padding: 1%;
 }
 legend {
-  font-size: 2em;
+  font-family: 'Staatliches', cursive;
+  letter-spacing: 4px;
+  font-size: 2.5em;
   padding: 1%;
   color:darkcyan;
+  margin-bottom: 0.5%;
 }
 #url_input {
+  font-family: 'Staatliches', cursive;
+  font-size: 1.5em;
   width: 50%;
-  height: 3em;
+  height: 2em;
   text-align: center;
   padding: 5px;
   border-radius: 5em;
@@ -106,6 +114,7 @@ button:focus {
 
 /* ANSWER */
 #answer {
+  font-family: 'Staatliches', cursive;
   display: none;
   font-size: 25px;
   margin: 2em;
