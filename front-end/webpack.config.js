@@ -27,6 +27,10 @@ module.exports = {
       template: "./app/index.html",
       filename: "./index.html",
     }),
+    new HtmlWebpackPlugin({
+      template: "./app/notFound.html",
+      filename: "./notFound.html",
+    }),
     new MiniCssExtractPlugin({
       filename: "[name].css",
     }),

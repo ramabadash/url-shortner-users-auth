@@ -16,6 +16,39 @@ main {
   padding: 0;
   margin-top: 40px;
 }
+/* NAV-BAR */
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+  border-right:1px solid #bbb;
+}
+
+li:last-child {
+  border-right: none;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #111;
+}
+
+.active {
+  background-color: #ffc421;
+}
 
 /* HEADERS */
 h1 {
@@ -24,7 +57,11 @@ h1 {
   font-size: 3em;
   color: whitesmoke;
 }
-
+/* IMAGES */
+#logo {
+  float: left;
+  height: 3em;
+}
 /* INPUT AREA */
 .input-container {
   background-color: rgba(48, 136, 136, 0.5);
@@ -177,11 +214,6 @@ h3 {
   width: 20em;
 }
 
-/* IMAGES */
-#logo {
-  float: left;
-  height: 5em;
-}
 /* FOOTER */
 footer {
   background-color: #f0da9f;
@@ -264,20 +296,6 @@ footer {
 .wrapper .facebook:hover .tooltip,
 .wrapper .facebook:hover .tooltip::before {
   background-color: #3b5999;
-  color: #ffffff;
-}
-
-.wrapper .twitter:hover,
-.wrapper .twitter:hover .tooltip,
-.wrapper .twitter:hover .tooltip::before {
-  background-color: #46c1f6;
-  color: #ffffff;
-}
-
-.wrapper .instagram:hover,
-.wrapper .instagram:hover .tooltip,
-.wrapper .instagram:hover .tooltip::before {
-  background-color: #e1306c;
   color: #ffffff;
 }
 

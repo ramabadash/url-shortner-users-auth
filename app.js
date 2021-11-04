@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT || 3000;
+const path = require("path");
 
 //MiddleWares
 const {errorHandlerMiddleware} = require("./back-end/middlewares/errorHandler");
@@ -23,6 +24,10 @@ app.use(express.json()) // parses requests as json
 app.use("/", express.static(`./front-end/dist`));
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "./front-end/dist/index.html");
+});
+app.use("/", express.static(`./front-end/dist`));
+app.get("/404/notfound", (req, res) => {
+  res.sendFile(__dirname + "/front-end/dist/notFound.html");
 });
 
 // app.use(validHandlerMiddleware);
