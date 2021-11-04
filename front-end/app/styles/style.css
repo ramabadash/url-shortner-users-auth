@@ -39,7 +39,7 @@ legend {
   color:darkcyan;
   margin-bottom: 0.5%;
 }
-#url_input {
+#url_input{
   font-family: 'Staatliches', cursive;
   font-size: 1.5em;
   width: 50%;
@@ -133,9 +133,31 @@ button:focus {
 }
 
 /* STATISTICS */
+
+h3 {
+  font-family: 'Staatliches', cursive;
+  letter-spacing: 4px;
+  font-size: 2.5em;
+  padding: 1%;
+  color:darkcyan;
+  margin-bottom: 0.5%;
+}
 #statistics {
-  display: none;
+  display: flex;
   flex-direction: column;
+  height: auto;
+  margin-top: 1em;
+  background-color:lightslategrey;
+}
+#stat_input {
+  font-family: 'Staatliches', cursive;
+  font-size: 1.5em;
+  width: 50%;
+  height: 1em;
+  text-align: center;
+  padding: 5px;
+  border-radius: 5em;
+  align-self: center;
 }
 #statistics-logo {
   background-color: inherit;
@@ -143,20 +165,18 @@ button:focus {
   width: 20em;
 }
 
-/* LOGOS */
-/* #logo {
-  background-color: transparent;
-  height: 8em;
-  width: 12em;
+/* IMAGES */
+#logo {
   float: left;
-} */
+  height: 5em;
+}
 /* FOOTER */
 footer {
   background-color: #f0da9f;
   /* background-color: rgb(177, 214, 206); */
   width: 100%;
-  position: fixed;
-  top: 80%;
+  position: relative;
+  top: 85%;
   font-family: "Poppins", sans-serif;
 }
 
