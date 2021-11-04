@@ -1,5 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const path = require("path");
+const fs = require("fs");
+const UrlData = require('../DB/urlDataClass');
+
 // localhost:3000/api
 const BASEURL = "http://localhost:3000/api/get";
 
@@ -14,9 +18,22 @@ router.post("/", (req, res) => {
     else res.send(shortUrl);
 })
 
-//
-router.get("/get/:id", (req, res) => { 
-    res.send("yes");
+//Receives a request from a short URL and redirects it to the original site (long URL)
+router.get("/get/:id", (req, res) => {
+    const id = req.params.id;
+    const infoFilePath = path.resolve(__dirname, "../DB/info.json");
+    const currentData = JSON.parse(fs.readFileSync(infoFilePath));
+    const urlDataObj = currentData[id];
+    updateUrlGetCount(id); 
+    res.status(301).header("Location", urlDataObj.longUrl).end();
 })
 
 module.exports = router;
+
+//Increases the url entry counter each time you enter it
+function updateUrlGetCount(id) {
+    const infoFilePath = path.resolve(__dirname, "../DB/info.json");
+    const currentData = JSON.parse(fs.readFileSync(infoFilePath));
+    currentData[id].getCount += 1;
+    fs.writeFileSync(`${infoFilePath}`, JSON.stringify(currentData));
+}
