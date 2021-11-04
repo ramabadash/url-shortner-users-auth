@@ -11,6 +11,7 @@ const BASEURL = "http://localhost:3000/api/get";
 router.post("/", (req, res) => {
     try {
         const longUrl = req.body.longUrl;
+        if ( !isValidHttpUrl(longUrl)) throw {"status": 400, "messege": "invalid URL"};
         const id = '_' + Math.random().toString(36).substr(2, 9);
         const shortUrl = `${BASEURL}/${id}`;
         const urlData = new UrlData(longUrl, id, shortUrl);
@@ -45,4 +46,17 @@ function updateUrlGetCount(id) {
     const currentData = JSON.parse(fs.readFileSync(infoFilePath));
     currentData[id].getCount += 1;
     fs.writeFileSync(`${infoFilePath}`, JSON.stringify(currentData));
+}
+//Checks if the url is valid
+function isValidHttpUrl(string) {
+    let url;
+    try {
+      if (string.length >= 1000) {
+        return false;
+      }
+      url = new URL(string);
+    } catch (_) {
+      return false;
+    }
+    return url.protocol === "http:" || url.protocol === "https:";
 }

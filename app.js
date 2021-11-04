@@ -5,7 +5,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const urlsRouter = require("./back-end/routers/urlsRouter");
 const {errorHandlerMiddleware} = require("./back-end/middlewares/errorHandler");
-const {validHandlerMiddleware} = require("./back-end/middlewares/validHandler");
+// const {validHandlerMiddleware} = require("./back-end/middlewares/validHandler");
 
 
 app.use(cors({
@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "./front-end/dist/index.html");
 });
 
-app.use(validHandlerMiddleware);
+// app.use(validHandlerMiddleware);
 app.use("/api", urlsRouter);
 
 app.use(errorHandlerMiddleware);
