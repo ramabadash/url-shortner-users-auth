@@ -34,8 +34,14 @@ const creationDateInfo = document.getElementById("creationDate");
 
 //User managment
 const helloHeader = document.getElementById("hello-user");
+const customUrlInput = document.getElementById("custom-url_input");
+const customWordInput = document.getElementById("custom-word_input");
+const customSubmitBtn = document.getElementById("custom-submitBtn");
+const historyDiv = document.getElementById("history-info");
+const historyBtb = document.getElementById("history-btn");
 
 /*---------- EVENT LISTENERS ----------*/
+//Login events
 loginBtn.addEventListener("click", ()=> {
   userNameInput.setAttribute('disabled', true);
 });
@@ -43,9 +49,12 @@ swichBtn.addEventListener("click", ()=> {
   userNameInput.removeAttribute('disabled');
 });
 
+//Network events
 submitBtn.addEventListener("click", postUrl);
 statsBtn.addEventListener("click", getStats);
+customSubmitBtn.addEventListener("click", postCustomUrl)
 
+//Nav-bar events
 homeBtn.addEventListener("click", ()=> {
   homeDiv.classList.toggle("hide");
   homeBtn.classList.toggle("active");
@@ -67,6 +76,34 @@ usersBtn.addEventListener("click", ()=> {
 })
 
 /*---------- NETWORK ----------*/
+//Make custom URL
+async function postCustomUrl() {
+  try {
+    cleanStats();
+    const response = await axios.post(`${BASEURL}/users`, {
+      "longUrl" : customUrlInput.value,
+      "userName": userNameInput.value || "info", //Sends User name or the General Data name,
+      "customWord" : customWordInput.value
+    });
+    const shortUrl = response.data;
+
+    //Show answer = 
+    answerDiv.style.display = "block";
+    answerDiv.textContent = `${shortUrl}`;
+    //Append close button
+    const closeAnsBtn = createElement("button", "❌", "close-btn");
+    closeAnsBtn.addEventListener("click", cleanAnswerUrl);
+    answerDiv.appendChild(closeAnsBtn);
+
+    customUrlInput.value = "";
+    customWordInput.value = "";
+  } catch (error) {
+    errorMessege(error.response.data.error, errorDiv);
+    customUrlInput.value = "";
+    customWordInput.value = "";
+  }
+}
+
 //A url shortcut request
 async function postUrl() {
   try {

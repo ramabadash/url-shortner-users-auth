@@ -11,14 +11,23 @@ class UrlData {
         this.date = _date ;
         this.getCount = 0 ;
     }
-    saveToUserDir(userName) {
+    saveToUserDir(userName, custom = false) {
         const userFilePath = path.resolve(__dirname, `./${userName}.json`);
         const currentData = JSON.parse(fs.readFileSync(userFilePath));
-        for (let id in currentData) {
-            if(currentData[id].longUrl === this.longUrl) {
-                return currentData[id].shortUrl;
-            }
-        }        
+        //Check if Url was shorten before
+        if(!custom) {
+            for (let id in currentData) {
+                if(currentData[id].longUrl === this.longUrl) {
+                    return currentData[id].shortUrl;
+                }
+            }        
+        } else { //Check if current custom word was used for the same long url
+            if (currentData[this.id]) {
+                if(currentData[this.id].longUrl === this.longUrl) {
+                    return currentData[this.id].shortUrl;
+                }
+            }  
+        }
         currentData[this.id] = this ;
         fs.writeFileSync(`${userFilePath}`, JSON.stringify(currentData));
     }

@@ -12,7 +12,7 @@ const {errorHandlerMiddleware} = require("./back-end/middlewares/errorHandler");
 //Routers
 const urlsRouter = require("./back-end/routers/urlsRouter");
 const statsRouter = require("./back-end/routers/statsRouter");
-
+const userManagmentRouter = require("./back-end/routers/userManagmentRouter");
 
 app.use(cors({
   origin: "*"
@@ -34,6 +34,7 @@ app.get("/404/notfound", (req, res) => {
 // app.use(validHandlerMiddleware);
 app.use("/api", urlsRouter);
 app.use("/statistic", statsRouter);
+app.use("/users", userManagmentRouter);
 
 app.use(errorHandlerMiddleware);
 

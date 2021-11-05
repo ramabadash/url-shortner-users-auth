@@ -1,0 +1,33 @@
+const express = require('express');
+const router = express.Router();
+const path = require("path");
+const fs = require("fs");
+const UrlData = require('../DB/urlDataClass');
+const BASEURL = "http://localhost:3000/api";
+const {isValidHttpUrl, checkNewUser, checkCustomWord} = require("./helpers");
+
+// localhost:3000/users
+
+//Generate custom short url
+router.post("/" ,(req, res) => {
+    try {
+        const longUrl = req.body.longUrl;
+        const userName = req.body.userName;
+        const customWord = req.body.customWord;
+        if (!customWord)  throw {"status": 400, "messege": "Must insert a custom word. You can try to shorten to a general address on the home page"}; 
+        checkNewUser(userName);
+        if ( !isValidHttpUrl(longUrl)) throw {"status": 400, "messege": "invalid URL"};
+        const id = checkCustomWord(userName, customWord, longUrl);
+        const shortUrl = `${BASEURL}/${userName}/${id}`;
+        const urlData = new UrlData(longUrl, id, shortUrl);
+        const saveResult = urlData.saveToUserDir(userName, true);
+        if(saveResult) res.send(saveResult); //The address has been shortened in the past.
+        else res.send(shortUrl);
+    } catch (error) {
+        console.log(error);
+        throw {"status": error.status, "messege": error.messege};
+    }
+})
+
+module.exports = router;
+
