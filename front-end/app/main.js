@@ -97,10 +97,11 @@ async function getStats() {
   try {
     cleanAnswerUrl();
     cleanStats();
+    const userName = userNameInput.value || "info";
     const shortUrl = statInput.value;
     const splitUrlArr = shortUrl.split("/");
     const urlId = splitUrlArr[splitUrlArr.length -1];
-    const response = await axios.get(`${BASEURL}/statistic/${urlId}`);
+    const response = await axios.get(`${BASEURL}/statistic/${userName}/${urlId}`);
     const statsObj = response.data;
 
     document.querySelectorAll(".stats-label").forEach((element)=> element.classList.toggle("hide"));

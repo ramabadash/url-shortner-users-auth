@@ -3,11 +3,12 @@ const router = express.Router();
 const path = require("path");
 const fs = require("fs");
 
-router.get("/:id", (req, res)=> {
+router.get("/:userName/:id", (req, res)=> {
     try {
+        const userName = req.params.userName;
         const id = req.params.id;
-        const infoFilePath = path.resolve(__dirname, "../DB/info.json");
-        const currentData = JSON.parse(fs.readFileSync(infoFilePath));
+        const userFilePath = path.resolve(__dirname, `../DB/${userName}.json`);
+        const currentData = JSON.parse(fs.readFileSync(userFilePath));
         const urlDataObj = currentData[id];
         if (!urlDataObj) {
             throw {"status": 400 , "messege": "No such URL on our data base"};
