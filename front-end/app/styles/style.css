@@ -29,6 +29,7 @@ ul {
 li {
   float: left;
   border-right:1px solid #bbb;
+  cursor: pointer;
 }
 
 li:last-child {
@@ -81,6 +82,14 @@ h1 {
   font-size: 3em;
   color: whitesmoke;
 }
+h3 {
+  font-family: 'Staatliches', cursive;
+  letter-spacing: 4px;
+  font-size: 2.5em;
+  padding: 1%;
+  color:darkcyan;
+  margin-bottom: 0.5%;
+}
 
 /*---------- IMAGES ----------*/
 #logo {
@@ -123,7 +132,7 @@ legend {
 		-webkit-tap-highlight-color: transparent;
 }
 
-#submitBtn, #statsBtn {
+#submitBtn, #statsBtn, #custom-submitBtn {
 	width: 150px;
 	height: 50px;
 	cursor: pointer;
@@ -136,7 +145,7 @@ legend {
 	transition: 500ms;
 }
 
-#submitBtn:after, #statsBtn:after {
+#submitBtn:after, #statsBtn:after, #custom-submitBtn:after {
 	content: '';
 	position: absolute;
 	transform: translateX(-55px) translateY(-40px);
@@ -148,12 +157,12 @@ legend {
 	transition: 500ms;
 }
 
-#statsBtn:hover, #submitBtn:hover {
+#statsBtn:hover, #submitBtn:hover, #custom-submitBtn:hover {
 	transform: translateY(-5px);
 	box-shadow: 0px 10px 10px rgba(0,0,0,0.4);
 }
 
-#submitBtn:hover:after, #statsBtn:hover:after {
+#submitBtn:hover:after, #statsBtn:hover:after, #custom-submitBtn:hover::after {
 	background: white;
 	box-shadow: 0px 0px 20px #ffc421, 0px 0px 30px #ffc421, inset 0px 0px 10px #ffc421;
 	animation: spin 1s infinite linear;
@@ -171,7 +180,7 @@ legend {
 			height: 15px;}
 }
 
-#submitBtn:focus, #statsBtn:focus {
+#submitBtn:focus, #statsBtn:focus, #custom-submitBtn:focus {
 	outline: none;
 }
 
@@ -208,15 +217,6 @@ legend {
 }
 
 /*---------- STATISTICS ----------*/
-
-h3 {
-  font-family: 'Staatliches', cursive;
-  letter-spacing: 4px;
-  font-size: 2.5em;
-  padding: 1%;
-  color:darkcyan;
-  margin-bottom: 0.5%;
-}
 .statistics-div {
   display: flex;
   flex-direction: column;
@@ -266,6 +266,44 @@ h3 {
   color: #222;
   text-align: center;
 } 
+
+/*---------- USER MANAGMENT ----------*/
+#usres-div {
+    background-color: rgba(48, 136, 102, 0.5);
+    margin-top: 1em;
+    padding: 1%;
+}
+#hello-user {
+  color: #222;
+  text-align: left;
+}
+#slash {
+  font-size: 2em;
+  margin: 0.5em;
+}
+#custom-url_input, #custom-word_input {
+  font-family: 'Staatliches', cursive;
+  font-size: 1em;
+  width: 25%;
+  height: 1em;
+  text-align: center;
+  padding: 5px;
+  border-radius: 5em;
+}
+#history-btn {
+  margin: 0.75em;
+  background-color: #ffc421;
+  cursor: pointer;
+	font-size: 1em;
+	font-family: 'Staatliches', cursive;
+	letter-spacing: 2px;
+	border: 2px solid black;
+	box-shadow: 0px 0px 0px rgba(0,0,0,0.4);
+}
+#history-btn:hover {
+  transform: translateY(-5px);
+	box-shadow: 0px 10px 10px rgba(0,0,0,0.4);
+}
 
 /*---------- FOOTER ----------*/
 footer {

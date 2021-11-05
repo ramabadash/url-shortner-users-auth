@@ -9,10 +9,13 @@ const homeDiv = document.querySelector(".input-container");
 const statsNavBarBtn = document.getElementById("stats-nevBar");
 const statsDiv = document.getElementById("statistics");
 const usersBtn = document.getElementById("users-nevBar");
+const usersDiv = document.getElementById("usres-div");
+
 //UserName
 const loginBtn = document.getElementById("login-btn");
 const swichBtn = document.getElementById("swich-btn");
 const userNameInput = document.getElementById("userName-input");
+
 //Answer
 const urlInput = document.getElementById("url_input");
 const submitBtn = document.getElementById("submitBtn");
@@ -28,6 +31,9 @@ const originalUrlInfo = document.getElementById("originalUrl");
 const redirectCountInfo = document.getElementById("redirectCount");
 const creationDateInfo = document.getElementById("creationDate");
 
+//User managment
+const helloHeader = document.getElementById("hello-user");
+
 /*---------- EVENT LISTENERS ----------*/
 submitBtn.addEventListener("click", postUrl);
 statsBtn.addEventListener("click", getStats);
@@ -41,6 +47,16 @@ statsNavBarBtn.addEventListener("click", ()=> {
   statsDiv.classList.toggle("hide");
   statsNavBarBtn.classList.toggle("active");
 });
+
+usersBtn.addEventListener("click", ()=> {
+  if (!userNameInput.value) {
+    errorMessege("You must enter a username for this service", document.querySelector("main"));
+    return;
+  }
+  usersDiv.classList.toggle("hide");
+  usersBtn.classList.toggle("active");
+  helloHeader.textContent = `Hello ${userNameInput.value} !`;
+})
 
 /*---------- NETWORK ----------*/
 //A url shortcut request
