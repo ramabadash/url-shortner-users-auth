@@ -9,7 +9,10 @@ const homeDiv = document.querySelector(".input-container");
 const statsNavBarBtn = document.getElementById("stats-nevBar");
 const statsDiv = document.getElementById("statistics");
 const usersBtn = document.getElementById("users-nevBar");
-
+//UserName
+const loginBtn = document.getElementById("login-btn");
+const swichBtn = document.getElementById("swich-btn");
+const userNameInput = document.getElementById("userName-input");
 //Answer
 const urlInput = document.getElementById("url_input");
 const submitBtn = document.getElementById("submitBtn");
@@ -59,7 +62,7 @@ async function postUrl() {
 
     urlInput.value = "";
   } catch (error) {
-    errorMessege(error.response.data.error);
+    errorMessege(error.response.data.error, homeDiv);
     urlInput.value = "";
   }
 }
@@ -75,14 +78,15 @@ async function getStats() {
     const response = await axios.get(`${BASEURL}/statistic/${urlId}`);
     const statsObj = response.data;
 
-    creationDateInfo.textContent = `Creation Date:  ${statsObj.creationDate}`;
-    redirectCountInfo.textContent = `The number of times the link was used: ${statsObj.redirectCount}`;
-    originalUrlInfo.textContent = `Original Url: ${statsObj.originalUrl}`;
-    idInfo.textContent = `ID: ${statsObj.id} `;
+    document.querySelectorAll(".stats-label").forEach((element)=> element.classList.toggle("hide"));
+    creationDateInfo.textContent = `${statsObj.creationDate}`;
+    redirectCountInfo.textContent = `${statsObj.redirectCount}`;
+    originalUrlInfo.textContent = `${statsObj.originalUrl}`;
+    idInfo.textContent = `${statsObj.id} `;
 
     statInput.value = "";
   } catch (error) {
-    errorMessege(error.response.data.error);
+    errorMessege(error.response.data.error, statsDiv);
     statInput.value = "";
   }
 }
@@ -90,12 +94,11 @@ async function getStats() {
 
 /*---------- ERROR HANDLER ----------*/
 //Display Error massege
-function errorMessege(messege) {
+function errorMessege(messege, element) {
   const errorElem = document.createElement('div');
   errorElem.textContent = `Sorry ${messege}, please try again! ❌`;
   errorElem.classList.add('error-messege');
-  const inputContainer = document.querySelector(".input-container");
-  inputContainer.appendChild(errorElem);
+  element.appendChild(errorElem);
   setTimeout(() => errorElem.remove(), 5000);
 }
 
@@ -109,10 +112,11 @@ function createElement(tagName, textContent, className) {
 }
 //Clean old information in stats area
 function cleanStats() {
+  document.querySelectorAll(".stats-label").forEach((element)=> element.classList.add("hide"));
   creationDateInfo.textContent = "";
-    redirectCountInfo.textContent = "";
-    originalUrlInfo.textContent = "";
-    idInfo.textContent = "";
+  redirectCountInfo.textContent = "";
+  originalUrlInfo.textContent = "";
+  idInfo.textContent = "";
 }
 //Clean old information in answer area
 function cleanAnswerUrl() {

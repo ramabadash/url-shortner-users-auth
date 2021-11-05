@@ -20,6 +20,10 @@
       <li><a id="users-nevBar">User Managment</a></li>
       <!-- <li style="float:right"><a href="#about">About</a></li> -->
       <li style="float:right"><img id="logo" src="./images/logo.png"></li>
+      <li style="float:right"><input placeholder="User Name" id="userName-input">
+        <button id="login-btn">Login</button>
+        <button id="swich-btn">Swich user</button>
+      </li>
     </ul>
 
     
@@ -39,13 +43,19 @@
           <input id="stat_input" type="text" placeholder="Check link statistics.." />
           <button id="statsBtn" class="noselect">CHECK</button>
         </div>
-        <div id="statistics-info">
-          <p id="creationDate"></p>
-          <p id="redirectCount"></p>
-          <p id="originalUrl"></p>
-          <p id="id"></p>
+        <div id="stats-container">
+          <div id="statistics-info">
+            <label class="stats-label hide">Creation Date: </label>
+            <label id="creationDate"></label></br>
+            <label class="stats-label hide">The number of times the link was used: </label>
+            <label id="redirectCount"></label></br>
+            <label class="stats-label hide" >Original Url: </label>
+            <label id="originalUrl"></label></br>
+            <label class="stats-label hide">ID: </label>
+            <label id="id"></label>
+          </div>
+          <img id="statistics-logo" loading="lazy" src="https://docrdsfx76ssb.cloudfront.net/static/1635458173/pages/wp-content/uploads/2019/03/dash-min.gif" alt="">
         </div>
-        <img id="statistics-logo" loading="lazy" src="https://docrdsfx76ssb.cloudfront.net/static/1635458173/pages/wp-content/uploads/2019/03/dash-min.gif" alt="">
       </div>
 
     </main>
