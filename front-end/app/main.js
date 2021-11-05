@@ -2,6 +2,7 @@ import "./styles/style.css";
 
 /*---------- VARIIABLES DECLARATION ----------*/
 const BASEURL = "http://localhost:3000";
+const errorDiv = document.getElementById("error-display");
 
 //Nav-bar
 const homeBtn = document.getElementById("home-nevBar");
@@ -50,7 +51,7 @@ statsNavBarBtn.addEventListener("click", ()=> {
 
 usersBtn.addEventListener("click", ()=> {
   if (!userNameInput.value) {
-    errorMessege("You must enter a username for this service", document.querySelector("main"));
+    errorMessege("You must enter a username for this service", errorDiv);
     return;
   }
   usersDiv.classList.toggle("hide");
@@ -78,7 +79,7 @@ async function postUrl() {
 
     urlInput.value = "";
   } catch (error) {
-    errorMessege(error.response.data.error, homeDiv);
+    errorMessege(error.response.data.error, errorDiv);
     urlInput.value = "";
   }
 }
@@ -102,7 +103,7 @@ async function getStats() {
 
     statInput.value = "";
   } catch (error) {
-    errorMessege(error.response.data.error, statsDiv);
+    errorMessege(error.response.data.error, errorDiv);
     statInput.value = "";
   }
 }
