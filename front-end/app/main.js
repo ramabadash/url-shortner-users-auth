@@ -36,6 +36,13 @@ const creationDateInfo = document.getElementById("creationDate");
 const helloHeader = document.getElementById("hello-user");
 
 /*---------- EVENT LISTENERS ----------*/
+loginBtn.addEventListener("click", ()=> {
+  userNameInput.setAttribute('disabled', true);
+});
+swichBtn.addEventListener("click", ()=> {
+  userNameInput.removeAttribute('disabled');
+});
+
 submitBtn.addEventListener("click", postUrl);
 statsBtn.addEventListener("click", getStats);
 
@@ -65,7 +72,8 @@ async function postUrl() {
   try {
     cleanStats();
     const response = await axios.post(`${BASEURL}/api`, {
-      "longUrl" : urlInput.value
+      "longUrl" : urlInput.value,
+      "userName": userNameInput.value || "info" //Sends User name or the General Data name
     });
     const shortUrl = response.data;
 

@@ -11,20 +11,17 @@ class UrlData {
         this.date = _date ;
         this.getCount = 0 ;
     }
-    saveToInfoDir() {
-        const infoFilePath = path.resolve(__dirname, "./info.json");
-        const currentData = JSON.parse(fs.readFileSync(infoFilePath));
+    saveToUserDir(userName) {
+        const userFilePath = path.resolve(__dirname, `./${userName}.json`);
+        const currentData = JSON.parse(fs.readFileSync(userFilePath));
         for (let id in currentData) {
             if(currentData[id].longUrl === this.longUrl) {
                 return currentData[id].shortUrl;
             }
         }        
         currentData[this.id] = this ;
-        fs.writeFileSync(`${infoFilePath}`, JSON.stringify(currentData));
+        fs.writeFileSync(`${userFilePath}`, JSON.stringify(currentData));
     }
-    // updateGetCount() {
-    //     this.getCount +=1;
-    // }
 }
 
 module.exports = UrlData;

@@ -1,5 +1,6 @@
 
 function errorHandlerMiddleware (err, req, res, next) {
+    console.log(err);
     if (err.status === 404) {
         return res.status(301).header("Location", "/404/notfound").end();
     }
