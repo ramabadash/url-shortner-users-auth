@@ -12,7 +12,7 @@ router.post("/", (req, res) => {
     try {
         const longUrl = req.body.longUrl;
         if ( !isValidHttpUrl(longUrl)) throw {"status": 400, "messege": "invalid URL"};
-        const id = '_' + Math.random().toString(36).substr(2, 9);
+        const id = generateId();
         const shortUrl = `${BASEURL}/${id}`;
         const urlData = new UrlData(longUrl, id, shortUrl);
         const saveResult = urlData.saveToInfoDir();
@@ -61,4 +61,12 @@ function isValidHttpUrl(string) {
       return false;
     }
     return url.protocol === "http:" || url.protocol === "https:";
+}
+//Generates a new id and checks if it is unique, if not invents a new one and repeats the process. If unique will return it
+function generateId() {
+    const id = '_' + Math.random().toString(36).substr(2, 9);
+    const infoFilePath = path.resolve(__dirname, "../DB/info.json");
+    const currentData = JSON.parse(fs.readFileSync(infoFilePath));
+    if (currentData[id]) return generateId(); //The id already exists, create a new one
+    else return id;
 }
