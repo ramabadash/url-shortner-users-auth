@@ -38,7 +38,7 @@ const customUrlInput = document.getElementById("custom-url_input");
 const customWordInput = document.getElementById("custom-word_input");
 const customSubmitBtn = document.getElementById("custom-submitBtn");
 const historyDiv = document.getElementById("history-info");
-const historyBtb = document.getElementById("history-btn");
+const historyBtn = document.getElementById("history-btn");
 
 /*---------- EVENT LISTENERS ----------*/
 //Login events
@@ -47,12 +47,14 @@ loginBtn.addEventListener("click", ()=> {
 });
 swichBtn.addEventListener("click", ()=> {
   userNameInput.removeAttribute('disabled');
+  clearHistoryFromDom();
 });
 
 //Network events
 submitBtn.addEventListener("click", postUrl);
 statsBtn.addEventListener("click", getStats);
-customSubmitBtn.addEventListener("click", postCustomUrl)
+customSubmitBtn.addEventListener("click", postCustomUrl);
+historyBtn.addEventListener("click", generateHistoryToDom);
 
 //Nav-bar events
 homeBtn.addEventListener("click", ()=> {
@@ -73,9 +75,25 @@ usersBtn.addEventListener("click", ()=> {
   usersDiv.classList.toggle("hide");
   usersBtn.classList.toggle("active");
   helloHeader.textContent = `Hello ${userNameInput.value} !`;
+  clearHistoryFromDom();
 })
 
 /*---------- NETWORK ----------*/
+//Get User History
+async function getUserHistory() {
+  try {
+    cleanAnswerUrl();
+    cleanStats();
+    const userName = userNameInput.value;
+    const response = await axios.get(`${BASEURL}/users/history/${userName}`);
+    const historyArr = response.data;
+
+    return historyArr;
+
+  } catch (error) {
+    errorMessege(error.response.data.error, errorDiv);
+  }
+}
 //Make custom URL
 async function postCustomUrl() {
   try {
@@ -87,7 +105,7 @@ async function postCustomUrl() {
     });
     const shortUrl = response.data;
 
-    //Show answer = 
+    //Show answer  
     answerDiv.style.display = "block";
     answerDiv.textContent = `${shortUrl}`;
     //Append close button
@@ -114,7 +132,7 @@ async function postUrl() {
     });
     const shortUrl = response.data;
 
-    //Show answer = 
+    //Show answer 
     answerDiv.style.display = "block";
     answerDiv.textContent = `${shortUrl}`;
     //Append close button
@@ -166,6 +184,32 @@ function errorMessege(messege, element) {
 }
 
 /*---------- DOM RELATED ----------*/
+//
+async function generateHistoryToDom() {
+  try {
+    clearHistoryFromDom();
+    const historyArr = await getUserHistory();
+    if (historyArr.length === 0) {
+      const noHistoryElem = createElement("div", "No history" , "error-messege");
+      historyDiv.appendChild(noHistoryElem);
+    } else {
+      for (const dataObj of historyArr) {
+        const historyPartDiv = createElement("div", "", "history-part");
+        const shortUrlElem = createElement("label", dataObj.date , "history-date");
+        const dateElem = createElement("label", dataObj.shortUrl, "history-url");
+        historyPartDiv.appendChild(shortUrlElem);
+        historyPartDiv.appendChild(dateElem);
+        historyDiv.appendChild(historyPartDiv);
+      }
+    }
+  } catch (error) {
+    errorMessege(error.response.data.error, errorDiv);
+  }
+}
+//
+function clearHistoryFromDom() {
+  document.querySelectorAll("#history-info>div").forEach((elem)=>elem.remove());
+}
 //
 function createElement(tagName, textContent, className) {
   const newElem = document.createElement(tagName);
