@@ -9,7 +9,9 @@ router.get("/:id", (req, res)=> {
         const infoFilePath = path.resolve(__dirname, "../DB/info.json");
         const currentData = JSON.parse(fs.readFileSync(infoFilePath));
         const urlDataObj = currentData[id];
-        if (!urlDataObj) throw {"status": 404 , "messege": "The website does not exist"};
+        if (!urlDataObj) {
+            throw {"status": 400 , "messege": "No such URL on our data base"};
+        }
         res.send({"creationDate": urlDataObj.date, "redirectCount": urlDataObj.getCount , "originalUrl": urlDataObj.longUrl, "id": urlDataObj.id });
     } catch (error) {
         throw {"status": error.status, "messege": error.messege};

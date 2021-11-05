@@ -16,7 +16,8 @@ main {
   padding: 0;
   margin-top: 40px;
 }
-/* NAV-BAR */
+
+/*---------- NAV-BAR ----------*/
 ul {
   list-style-type: none;
   margin: 0;
@@ -50,19 +51,21 @@ li a:hover:not(.active) {
   background-color: #ffc421;
 }
 
-/* HEADERS */
+/*---------- HEADERS ----------*/
 h1 {
   font-family: 'Staatliches', cursive;
   letter-spacing: 4px;
   font-size: 3em;
   color: whitesmoke;
 }
-/* IMAGES */
+
+/*---------- IMAGES ----------*/
 #logo {
   float: left;
   height: 3em;
 }
-/* INPUT AREA */
+
+/*---------- INPUT AREA ----------*/
 .input-container {
   background-color: rgba(48, 136, 136, 0.5);
   margin-top: 5%;
@@ -86,7 +89,7 @@ legend {
   border-radius: 5em;
 }
 
-/* BUTTON */
+/*---------- BUTTONS ----------*/
 .noselect {
   -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -160,14 +163,14 @@ legend {
   background-color: rgba(111, 103, 212, 0.904);
 }
 
-/* ERROR */
+/*---------- ERROR ----------*/
 .error-messege {
   color: #de463b;
   font-size: 2em;
   margin: 1em;
 }
 
-/* ANSWER */
+/*---------- ANSWER ----------*/
 #answer {
   font-family: 'Staatliches', cursive;
   display: none;
@@ -181,7 +184,7 @@ legend {
   border-radius: 0.5em;
 }
 
-/* STATISTICS */
+/*---------- STATISTICS ----------*/
 
 h3 {
   font-family: 'Staatliches', cursive;
@@ -191,7 +194,7 @@ h3 {
   color:darkcyan;
   margin-bottom: 0.5%;
 }
-#statistics {
+.statistics-div {
   display: flex;
   flex-direction: column;
   height: auto;
@@ -214,7 +217,7 @@ h3 {
   width: 20em;
 }
 
-/* FOOTER */
+/*---------- FOOTER ----------*/
 footer {
   background-color: #f0da9f;
   /* background-color: rgb(177, 214, 206); */
@@ -311,4 +314,9 @@ footer {
 .wrapper .youtube:hover .tooltip::before {
   background-color: #de463b;
   color: #ffffff;
+}
+
+/*  */
+.hide {
+  display: none;
 }

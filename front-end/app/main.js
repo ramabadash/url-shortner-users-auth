@@ -1,8 +1,15 @@
 import "./styles/style.css";
-// import { selectComponent } from "./js/selectComponent";
 
 /*---------- VARIIABLES DECLARATION ----------*/
 const BASEURL = "http://localhost:3000";
+
+//Nav-bar
+const homeBtn = document.getElementById("home-nevBar");
+const homeDiv = document.querySelector(".input-container");
+const statsNavBarBtn = document.getElementById("stats-nevBar");
+const statsDiv = document.getElementById("statistics");
+const usersBtn = document.getElementById("users-nevBar");
+
 //Answer
 const urlInput = document.getElementById("url_input");
 const submitBtn = document.getElementById("submitBtn");
@@ -21,6 +28,16 @@ const creationDateInfo = document.getElementById("creationDate");
 /*---------- EVENT LISTENERS ----------*/
 submitBtn.addEventListener("click", postUrl);
 statsBtn.addEventListener("click", getStats);
+
+homeBtn.addEventListener("click", ()=> {
+  homeDiv.classList.toggle("hide");
+  homeBtn.classList.toggle("active");
+});
+
+statsNavBarBtn.addEventListener("click", ()=> {
+  statsDiv.classList.toggle("hide");
+  statsNavBarBtn.classList.toggle("active");
+});
 
 /*---------- NETWORK ----------*/
 //A url shortcut request

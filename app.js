@@ -20,11 +20,12 @@ app.use(cors({
 
 app.use(express.json()) // parses requests as json
 
-
+//Home Page
 app.use("/", express.static(`./front-end/dist`));
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "./front-end/dist/index.html");
 });
+//404 Not Found- page
 app.use("/", express.static(`./front-end/dist`));
 app.get("/404/notfound", (req, res) => {
   res.sendFile(__dirname + "/front-end/dist/notFound.html");
