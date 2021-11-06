@@ -58,8 +58,6 @@ historyBtn.addEventListener("click", generateHistoryToDom);
 
 //Nav-bar events
 homeBtn.addEventListener("click", ()=> {
-  // homeDiv.classList.toggle("hide");
-  // homeBtn.classList.toggle("active");
   //Show & Hide elements
   homeDiv.classList.remove("hide");
   statsDiv.classList.add("hide");
@@ -75,9 +73,6 @@ homeBtn.addEventListener("click", ()=> {
 });
 
 statsNavBarBtn.addEventListener("click", ()=> {
-  // statsDiv.classList.toggle("hide");
-  // statsNavBarBtn.classList.toggle("active");
-  // cleanStats();
   //Show & Hide elements
   statsDiv.classList.remove("hide");
   homeDiv.classList.add("hide");
@@ -97,8 +92,6 @@ usersBtn.addEventListener("click", ()=> {
     errorMessege("You must enter a username for this service", errorDiv);
     return;
   }
-  // usersDiv.classList.toggle("hide");
-  // usersBtn.classList.toggle("active");
   helloHeader.textContent = `Hello ${userNameInput.value} !`;
   //Show & Hide elements
   usersDiv.classList.remove("hide");

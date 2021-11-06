@@ -1,77 +1,52 @@
-# ![Scale-Up Velocity](./readme-files/logo-main.png) Final 1 - URL shortner 📎
+# Final 1 - URL shortner 📎
 
-In this project you will create your own [URL shortener](https://en.wikipedia.org/wiki/URL_shortening)!
+## A front-To-End solution to "URL shortner" web app.
+### **written using-**
+#### **Front**
+* HTML - with webpack
+* JS
+* CSS
+#### **End** 
+* Node JS - with nodemon, express, path, fs.
+#### **Deploy** 
+* Heroku deployment 
+* **View my app! -  https://ramas-url-shortener.herokuapp.com/**
 
-This repository includes a basic template for starting the project:
+----
+## Special things about development
+---
+### **DB -** 
+* Based on a DB folder that contains json files customized for each user.
+* In addition a class that contains the relevant functionality for storing information about the url in the database.
 
-## Instructions
+----
+## User Instructions
+---
+### **URL shortner**- The app is designed to allow the customer to shorten a long and inelegant address and use a short / custom address instead.
 
-- Fork this repository to your account as a **public** repo
-- Clone your new repository to your computer 🖥
-- Install the project dependencies by running `npm install` from the vscode terminal `ctrl + j` (make sure you are in the correct directory) 📂
-- [Create a new branch](https://docs.github.com/en/desktop/contributing-and-collaborating-using-github-desktop/managing-branches) for the development process
-- Make changes to the code to meet the project requirements 📝
-- [Commit Early, Push Often](https://www.worklytics.co/commit-early-push-often/) - your work will be evaluated by your git flow and overall github usage 🏄‍♂️
-- Before submitting, create a pull request from the development branch into the main branch. **Leave the PR open and do not merge the branches**. The open PR will be used to review and mark your code
-- Good Luck! 🤘
+* ### Log in to the site by entering a username and using your own database or logging in as a guest to the site's general database of links.
 
-## Testing your project
+* ### You can navigate with the help of the NAV-BAR at the top of the page between the functionality of the site -
+* **Home page-** An address can be shortened by copying it to the input line and clicking a button. This service is also available to unregistered users.
+* **Statistics-** You can write a short link provided by the site to get the following information about it: the date it was created, the number of times it was used, the original link from which it was created and its identity card.
+* **User Managment-**
+* If you want to use this service you must enter a username and click on the login button at the top of the page.
+* You can use a database that is customized for you.
+* You can create a custom link - you must provide a link plus a custom word and it will be returned to you accordingly.
+* Clicking on the history button will display the short links provided to you and the date they were created.
 
-In this assignment, you will have to create your own tests, as learned in class. Your grade will be calculated by your test coverage.
+* ### Special page for 404 error as a result of an incorrect shortcut, there are 2 options to return to the home page of the site or return to the user history.
 
-Optionally, You can create a github [action](https://docs.github.com/en/actions) that runs your tests on each commit:
+----
+## Exemple pics -
+---- 
 
-![Commits test](./readme-files/commit-tests.png)
 
-## Guidelines
+<img src="./readme-img/home.png" width="70%" height="50%">
+<img src="./readme-img/stats.png" width="70%" height="50%">
+<img src="./readme-img/userManagment.png" width="70%" height="70%">
+<img src="./readme-img/not-found.png" width="70%" height="70%">
 
-- Create a route `/api/shorturl/` in your `express` app that will handle all url shortening requests. (We recommend using [express Router](https://expressjs.com/en/guide/routing.html))
 
-- Write/read **Asynchronously** a single JSON file as your DB
 
-- [Serve](https://expressjs.com/en/starter/static-files.html) your client files from your server at route `/`
 
-- Style and change your front-end as you wish. You can take inspiration from this [example](https://www.shorturl.at/)
-
-## Requirements
-
-- Examine thoroughly and copy all functionality of [this](https://url-shortener-microservice.freecodecamp.rocks/) FCC example
-
-- Use a `class DataBase{}` to read/write (**Asynchronously**) all data in your back-end (you can use a json file as persistent layer)
-
-- Add another functionality to your service: a statistics route (`api/statistic/:shorturl-id`) that will respond with the following data per `shorturl-id`:
-  - `creationDate` - a SQLDate format
-  - `redirectCount` - the amount of times this url was used for redirection
-  - `originalUrl`
-  - `shorturl-id`
-
-- Fully test your `express` app with `jest` and `supertest`. Test each end point response **including** error responses.
-
-  Use a separate DB file for your tests. _Hint: use [Environment variables](https://jestjs.io/docs/en/environment-variables)_
-
-## Bonus
-
-- Add any feature you desire. Some ideas worth extra points:
-  - Custom short URL. Support optional `shorturl-id` parameter in your `POST` request. Pay attention to error handling.
-  - Serve a styled statistics dashboard instead of the default JSON statistics
-  - Use the [`JSONBIN.io`](https://jsonbin.io/) service bin as your persistent layer in your back-end DB class (use CRUD operations to read write bins)
-  - Try implementing user management
-- Use supertest/puppeteer test to test any bonus feature you implemented
-
-**Add an explanation in `README.md` for each bonus feature you add and a link to any resource you used**
-
-## Grading policy
-
-- Using jsonbin.io with/instead of writing to files
-- Correct DB class usage
-- Code quality and style: indentation, Meaningful and non-disambiguate variable names, Comments and documentation, file and directory structure
-- Visual creativity, style your front-end to make it look awesome 💅🏿
-- Division to reusable functions, no code duplication
-- Git usage: meaningful commit messages, small commits, folder and file structures, README file, issues, etc...
-
-## Submitting
-- Submit your solution repo link - an open PR from your dev branch to the main one
-- Your readme should have a [`repl.it`](https://repl.it/) link with your solutions.
-- Submit a link to your repo to the CRM.
-
-GOOD LUCK!
