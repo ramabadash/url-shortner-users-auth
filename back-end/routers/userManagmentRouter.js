@@ -3,10 +3,11 @@ const router = express.Router();
 const path = require("path");
 const fs = require("fs");
 const UrlData = require('../DB/urlDataClass');
-const BASEURL = "http://localhost:3000/api";
 const {isValidHttpUrl, checkNewUser, checkCustomWord} = require("./helpers");
 
 // localhost:3000/users
+// const BASEURL = "http://localhost:3000/api";
+const BASEURL = "/api";
 
 //Generate custom short url
 router.post("/" ,(req, res) => {

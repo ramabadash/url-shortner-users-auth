@@ -6,7 +6,8 @@ const UrlData = require('../DB/urlDataClass');
 const {updateUrlGetCount, isValidHttpUrl, generateId, checkNewUser} = require("./helpers");
 
 // localhost:3000/api
-const BASEURL = "http://localhost:3000/api";
+// const BASEURL = "http://localhost:3000/api";
+const BASEURL = "/api";
 
 // Generates a new id and saves it in the database
 router.post("/", (req, res) => {
