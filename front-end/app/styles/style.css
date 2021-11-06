@@ -7,7 +7,6 @@ body {
   color: #222;
   background-color:#869296;
   background-image: linear-gradient(315deg, #829196 0%, #c1cdd6 74%);
-  /* background-image: url("https://docrdsfx76ssb.cloudfront.net/static/1635458173/pages/wp-content/uploads/2019/03/linkshortening_mobile2.jpg"); */
   text-align: center;
   line-height: 1.4em;
 }
@@ -184,17 +183,6 @@ legend {
 	outline: none;
 }
 
-.close-btn {
-  float: right;
-  height: 2em;
-  width: 4em;
-  background-color: rgba(61, 55, 143, 0.904);
-  cursor: pointer;
-}
-.close-btn:hover {
-  background-color: rgba(111, 103, 212, 0.904);
-}
-
 /*---------- ERROR ----------*/
 .error-messege {
   color: #de463b;
@@ -214,6 +202,22 @@ legend {
   border-color: rgb(65, 125, 165);
   border-style: solid;
   border-radius: 0.5em;
+}
+
+.close-btn, .copy-btn {
+  margin-right: 0.5em;
+  background-color: #ffc421;
+  cursor: pointer;
+	font-size: 1em;
+	font-family: 'Staatliches', cursive;
+	letter-spacing: 2px;
+	border: 2px solid black;
+	box-shadow: 0px 0px 0px rgba(0,0,0,0.4);
+  float: right;
+}
+.close-btn:hover, .copy-btn:hover {
+  transform: translateY(-5px);
+	box-shadow: 0px 10px 10px rgba(0,0,0,0.4);
 }
 
 /*---------- STATISTICS ----------*/
@@ -256,9 +260,10 @@ legend {
   text-align: center;
   margin-left: 1em;
 }
-#originalUrl {
-  width: 1px !important; 
-  overflow-x: scroll !important; 
+#originalUrl { 
+  text-align: left;
+  width: 30em !important; 
+  overflow: auto !important; 
 }
 .stats-label{
   font-family: 'Staatliches', cursive;

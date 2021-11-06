@@ -44,6 +44,7 @@ const historyBtn = document.getElementById("history-btn");
 //Login events
 loginBtn.addEventListener("click", ()=> {
   userNameInput.setAttribute('disabled', true);
+  helloHeader.textContent = `Hello ${userNameInput.value} !`;
 });
 swichBtn.addEventListener("click", ()=> {
   userNameInput.removeAttribute('disabled');
@@ -65,6 +66,7 @@ homeBtn.addEventListener("click", ()=> {
 statsNavBarBtn.addEventListener("click", ()=> {
   statsDiv.classList.toggle("hide");
   statsNavBarBtn.classList.toggle("active");
+  cleanStats();
 });
 
 usersBtn.addEventListener("click", ()=> {
@@ -104,14 +106,7 @@ async function postCustomUrl() {
       "customWord" : customWordInput.value
     });
     const shortUrl = response.data;
-
-    //Show answer  
-    answerDiv.style.display = "block";
-    answerDiv.textContent = `${shortUrl}`;
-    //Append close button
-    const closeAnsBtn = createElement("button", "❌", "close-btn");
-    closeAnsBtn.addEventListener("click", cleanAnswerUrl);
-    answerDiv.appendChild(closeAnsBtn);
+    generateAnswerToDom(shortUrl);
 
     customUrlInput.value = "";
     customWordInput.value = "";
@@ -131,15 +126,8 @@ async function postUrl() {
       "userName": userNameInput.value || "info" //Sends User name or the General Data name
     });
     const shortUrl = response.data;
-
-    //Show answer 
-    answerDiv.style.display = "block";
-    answerDiv.textContent = `${shortUrl}`;
-    //Append close button
-    const closeAnsBtn = createElement("button", "❌", "close-btn");
-    closeAnsBtn.addEventListener("click", cleanAnswerUrl);
-    answerDiv.appendChild(closeAnsBtn);
-
+    generateAnswerToDom(shortUrl);
+ 
     urlInput.value = "";
   } catch (error) {
     errorMessege(error.response.data.error, errorDiv);
@@ -184,6 +172,39 @@ function errorMessege(messege, element) {
 }
 
 /*---------- DOM RELATED ----------*/
+
+//Copy any text to clipBord
+function copyText(text) {
+  //Create temp input ekem with that text
+  const tempInput = document.createElement("input");
+  tempInput.setAttribute("value", text);
+  document.body.appendChild(tempInput);
+
+  // Select the temp text field
+  tempInput.select();
+  tempInput.setSelectionRange(0, 99999);
+
+  navigator.clipboard.writeText(tempInput.value); //Copy the text inside the text field
+
+  tempInput.remove(); //Remove temp input
+}
+
+//Generate answer to dom 
+function generateAnswerToDom(shortUrl) {
+  //Show answer  
+  answerDiv.style.display = "block";
+  answerDiv.textContent = `${shortUrl}`;
+
+  //Append close button
+  const closeAnsBtn = createElement("button", "✖", "close-btn");
+  closeAnsBtn.addEventListener("click", cleanAnswerUrl);
+  answerDiv.appendChild(closeAnsBtn);
+
+  //append copy button
+  const copyAnsBtn = createElement("button", "COPY", "copy-btn");
+  copyAnsBtn.addEventListener("click", () => {copyText(shortUrl)});
+  answerDiv.appendChild(copyAnsBtn);
+}
 //
 async function generateHistoryToDom() {
   try {
