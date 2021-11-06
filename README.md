@@ -15,9 +15,16 @@
 ----
 ## Special things about development
 ---
-### **DB -** 
-* Based on a DB folder that contains json files customized for each user.
+### **Persistence DB -** 
+* Using fs and path functionality.
+* Based on a DB folder that contains json files customized for each user. 
 * In addition a class that contains the relevant functionality for storing information about the url in the database.
+* Avoid "wasting memory" by returning previously shortened links from DB instead of producing a new one
+
+### **Generate Id for every url -** By using the simple code - ``` '_' + Math.random().toString(36).substr(2, 9) ```,
+in order to produce a unique and yet not too long id. Based on a combination of numbers and letters with the sign "_".
+
+### **Using Webpack for the front part**
 
 ----
 ## User Instructions
@@ -42,10 +49,10 @@
 ---- 
 
 
-<img src="./readme-img/home.png" width="70%" height="50%">
-<img src="./readme-img/stats.png" width="70%" height="50%">
-<img src="./readme-img/userManagment.png" width="70%" height="70%">
-<img src="./readme-img/not-found.png" width="70%" height="70%">
+<img src="./readme-img/home.png" width="100%" height="50%">
+<img src="./readme-img/stats.png" width="100%" height="50%">
+<img src="./readme-img/userManagment.png" width="100%" height="70%">
+<img src="./readme-img/not-found.png" width="100%" height="70%">
 
 
 

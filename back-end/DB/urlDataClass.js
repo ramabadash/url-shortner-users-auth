@@ -4,7 +4,7 @@ const fs = require("fs");
 
 
 class UrlData {
-    constructor(_longUrl, _id, _shortUrl ,_date = new Date(Date.now())) {
+    constructor(_longUrl, _id, _shortUrl ,_date = moment().format('llll')) {
         this.longUrl = _longUrl ;
         this.shortUrl = _shortUrl ;
         this.id = _id ;
