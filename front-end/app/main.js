@@ -1,7 +1,8 @@
 import "./styles/style.css";
 
 /*---------- VARIIABLES DECLARATION ----------*/
-const BASEURL = "http://localhost:3000";
+// const BASEURL = "http://localhost:3000";
+const BASEURL = "";
 const errorDiv = document.getElementById("error-display");
 
 //Nav-bar
