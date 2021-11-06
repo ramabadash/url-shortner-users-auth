@@ -7,7 +7,7 @@
 * JS
 * CSS
 #### **End** 
-* Node JS - with nodemon, express, path, fs.
+* Node JS - with nodemon, express, path, fs, moment.
 #### **Deploy** 
 * Heroku deployment 
 * **View my app! -  https://ramas-url-shortener.herokuapp.com/**
