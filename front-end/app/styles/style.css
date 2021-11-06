@@ -422,13 +422,6 @@ footer {
   color: #ffffff;
 }
 
-.wrapper .youtube:hover,
-.wrapper .youtube:hover .tooltip,
-.wrapper .youtube:hover .tooltip::before {
-  background-color: #de463b;
-  color: #ffffff;
-}
-
 /*  */
 .hide {
   display: none;
