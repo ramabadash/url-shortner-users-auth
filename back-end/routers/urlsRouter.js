@@ -14,20 +14,20 @@ router.post("/", (req, res) => {
     try {
         const longUrl = req.body.longUrl;
         const userName = req.body.userName;
-        checkNewUser(userName);
+        checkNewUser(userName); //Open a new file if the user is new
         if ( !isValidHttpUrl(longUrl)) throw {"status": 400, "messege": "invalid URL"};
         const id = generateId(userName);
         const shortUrl = `${BASEURL}/${userName}/${id}`;
-        const urlData = new UrlData(longUrl, id, shortUrl);
+        const urlData = new UrlData(longUrl, id, shortUrl); //Create url data object
         const saveResult = urlData.saveToUserDir(userName);
         if(saveResult) res.send(saveResult); //The address has been shortened in the past.
-        else res.send(shortUrl);
+        else res.send(shortUrl); //New address return the new one.
     } catch (error) {
         throw {"status": error.status, "messege": error.messege};
     }
 })
 
-//Receives a request from a short URL and redirects it to the original site (long URL)
+//Receives a request from a short URL and redirects it to the original site (long URL), base on the DB
 router.get("/:userName/:id", (req, res) => {
     try {
         const userName = req.params.userName;
@@ -36,10 +36,9 @@ router.get("/:userName/:id", (req, res) => {
         const currentData = JSON.parse(fs.readFileSync(userFilePath));
         const urlDataObj = currentData[id];
         if (!urlDataObj) throw {"status": 404 , "messege": "The website does not exist"};
-        updateUrlGetCount(id, userName); 
+        updateUrlGetCount(id, userName); //Update the count of the time of people use the short link
         res.status(301).header("Location", urlDataObj.longUrl).end();
     } catch (error) {
-        console.log(error);
         throw {"status": error.status, "messege": error.messege};
     }
 })

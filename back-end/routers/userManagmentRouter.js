@@ -16,16 +16,15 @@ router.post("/" ,(req, res) => {
         const userName = req.body.userName;
         const customWord = req.body.customWord;
         if (!customWord)  throw {"status": 400, "messege": "Must insert a custom word. You can try to shorten to a general address on the home page"}; 
-        checkNewUser(userName);
+        checkNewUser(userName); //Open a new file if the user is new
         if ( !isValidHttpUrl(longUrl)) throw {"status": 400, "messege": "invalid URL"};
-        const id = checkCustomWord(userName, customWord, longUrl);
+        const id = checkCustomWord(userName, customWord, longUrl); //Check if custom word is available
         const shortUrl = `${BASEURL}/${userName}/${id}`;
-        const urlData = new UrlData(longUrl, id, shortUrl);
+        const urlData = new UrlData(longUrl, id, shortUrl); //Create url data object
         const saveResult = urlData.saveToUserDir(userName, true);
         if(saveResult) res.send(saveResult); //The address has been shortened in the past.
         else res.send(shortUrl);
     } catch (error) {
-        console.log(error);
         throw {"status": error.status, "messege": error.messege};
     }
 });

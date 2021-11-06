@@ -7,7 +7,6 @@ const path = require("path");
 
 //MiddleWares
 const {errorHandlerMiddleware} = require("./back-end/middlewares/errorHandler");
-// const {validHandlerMiddleware} = require("./back-end/middlewares/validHandler");
 
 //Routers
 const urlsRouter = require("./back-end/routers/urlsRouter");
@@ -31,7 +30,6 @@ app.get("/404/notfound", (req, res) => {
   res.sendFile(__dirname + "/front-end/dist/notFound.html");
 });
 
-// app.use(validHandlerMiddleware);
 app.use("/api", urlsRouter);
 app.use("/statistic", statsRouter);
 app.use("/users", userManagmentRouter);

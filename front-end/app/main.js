@@ -9,7 +9,6 @@ const errorDiv = document.getElementById("error-display");
 const homeBtn = document.getElementById("home-nevBar");
 const homeDiv = document.querySelector(".input-container");
 const statsNavBarBtn = document.getElementById("stats-nevBar");
-const statsDiv = document.getElementById("statistics");
 const usersBtn = document.getElementById("users-nevBar");
 const usersDiv = document.getElementById("usres-div");
 
@@ -24,10 +23,9 @@ const submitBtn = document.getElementById("submitBtn");
 const answerDiv = document.getElementById("answer");
 
 //Stats
-// const statisticsDiv = document.getElementById("statistics");
+const statsDiv = document.getElementById("statistics");
 const statInput = document.getElementById("stat_input");
 const statsBtn = document.getElementById("statsBtn");
-const statsInfoDiv = document.getElementById("statistics-info");
 const idInfo = document.getElementById("id");
 const originalUrlInfo = document.getElementById("originalUrl");
 const redirectCountInfo = document.getElementById("redirectCount");
@@ -60,14 +58,38 @@ historyBtn.addEventListener("click", generateHistoryToDom);
 
 //Nav-bar events
 homeBtn.addEventListener("click", ()=> {
-  homeDiv.classList.toggle("hide");
-  homeBtn.classList.toggle("active");
+  // homeDiv.classList.toggle("hide");
+  // homeBtn.classList.toggle("active");
+  //Show & Hide elements
+  homeDiv.classList.remove("hide");
+  statsDiv.classList.add("hide");
+  usersDiv.classList.add("hide");
+  //Active & De-active nav-bar buttons
+  homeBtn.classList.add("active");
+  statsNavBarBtn.classList.remove("active");
+  usersBtn.classList.remove("active");
+  //Clear old data from other divs
+  cleanStats();
+  cleanAnswerUrl();
+  clearHistoryFromDom();
 });
 
 statsNavBarBtn.addEventListener("click", ()=> {
-  statsDiv.classList.toggle("hide");
-  statsNavBarBtn.classList.toggle("active");
+  // statsDiv.classList.toggle("hide");
+  // statsNavBarBtn.classList.toggle("active");
+  // cleanStats();
+  //Show & Hide elements
+  statsDiv.classList.remove("hide");
+  homeDiv.classList.add("hide");
+  usersDiv.classList.add("hide");
+  //Active & De-active nav-bar buttons
+  statsNavBarBtn.classList.add("active");
+  homeBtn.classList.remove("active");
+  usersBtn.classList.remove("active");
+  //Clear old data from other divs
   cleanStats();
+  cleanAnswerUrl();
+  clearHistoryFromDom();
 });
 
 usersBtn.addEventListener("click", ()=> {
@@ -75,9 +97,20 @@ usersBtn.addEventListener("click", ()=> {
     errorMessege("You must enter a username for this service", errorDiv);
     return;
   }
-  usersDiv.classList.toggle("hide");
-  usersBtn.classList.toggle("active");
+  // usersDiv.classList.toggle("hide");
+  // usersBtn.classList.toggle("active");
   helloHeader.textContent = `Hello ${userNameInput.value} !`;
+  //Show & Hide elements
+  usersDiv.classList.remove("hide");
+  homeDiv.classList.add("hide");
+  statsDiv.classList.add("hide");
+  //Active & De-active nav-bar buttons
+  usersBtn.classList.add("active");
+  homeBtn.classList.remove("active");
+  statsNavBarBtn.classList.remove("active");
+  //Clear old data from other divs
+  cleanStats();
+  cleanAnswerUrl();
   clearHistoryFromDom();
 })
 
@@ -127,7 +160,7 @@ async function postUrl() {
       "userName": userNameInput.value || "info" //Sends User name or the General Data name
     });
     const shortUrl = response.data;
-    generateAnswerToDom(shortUrl);
+    generateAnswerToDom(shortUrl); //Show answeron DOM
  
     urlInput.value = "";
   } catch (error) {
@@ -143,11 +176,13 @@ async function getStats() {
     cleanStats();
     const userName = userNameInput.value || "info";
     const shortUrl = statInput.value;
+    //Take only the id from the url
     const splitUrlArr = shortUrl.split("/");
-    const urlId = splitUrlArr[splitUrlArr.length -1];
+    const urlId = splitUrlArr[splitUrlArr.length -1]; 
+    //API request
     const response = await axios.get(`${BASEURL}/statistic/${userName}/${urlId}`);
     const statsObj = response.data;
-
+    //Append text to the elements
     document.querySelectorAll(".stats-label").forEach((element)=> element.classList.toggle("hide"));
     creationDateInfo.textContent = `${statsObj.creationDate}`;
     redirectCountInfo.textContent = `${statsObj.redirectCount}`;
@@ -173,7 +208,6 @@ function errorMessege(messege, element) {
 }
 
 /*---------- DOM RELATED ----------*/
-
 //Copy any text to clipBord
 function copyText(text) {
   //Create temp input ekem with that text
@@ -206,15 +240,16 @@ function generateAnswerToDom(shortUrl) {
   copyAnsBtn.addEventListener("click", () => {copyText(shortUrl)});
   answerDiv.appendChild(copyAnsBtn);
 }
-//
+//Generate histiry elements for the user base on the API response of "getUserHistory()"
 async function generateHistoryToDom() {
   try {
     clearHistoryFromDom();
-    const historyArr = await getUserHistory();
+    const historyArr = await getUserHistory(); //Sent API request
+    //Empty history
     if (historyArr.length === 0) {
       const noHistoryElem = createElement("div", "No history" , "error-messege");
       historyDiv.appendChild(noHistoryElem);
-    } else {
+    } else { //Has history - generate elements
       for (const dataObj of historyArr) {
         const historyPartDiv = createElement("div", "", "history-part");
         const shortUrlElem = createElement("label", dataObj.date , "history-date");
@@ -232,7 +267,7 @@ async function generateHistoryToDom() {
 function clearHistoryFromDom() {
   document.querySelectorAll("#history-info>div").forEach((elem)=>elem.remove());
 }
-//
+//General create element function
 function createElement(tagName, textContent, className) {
   const newElem = document.createElement(tagName);
   newElem.textContent = textContent;

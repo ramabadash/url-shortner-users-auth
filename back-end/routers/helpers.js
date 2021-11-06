@@ -24,7 +24,7 @@ function isValidHttpUrl(string) {
 }
 //Check if custom work of user is in use
 function checkCustomWord(userName, word, longUrl) {
-  const userFilePath = path.resolve(__dirname, `../DB/${userName}.json`);
+    const userFilePath = path.resolve(__dirname, `../DB/${userName}.json`);
     const currentData = JSON.parse(fs.readFileSync(userFilePath));
     if (currentData[word] && currentData[word].longUrl !== longUrl) {
       throw {"status": 400, "messege": `The word "${word}" is already in use`}; //The word already exists

@@ -3,6 +3,7 @@ const router = express.Router();
 const path = require("path");
 const fs = require("fs");
 
+//Get stats for short url by id
 router.get("/:userName/:id", (req, res)=> {
     try {
         const userName = req.params.userName;
