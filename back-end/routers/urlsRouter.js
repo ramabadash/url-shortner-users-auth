@@ -7,7 +7,7 @@ const {updateUrlGetCount, isValidHttpUrl, generateId, checkNewUser} = require(".
 
 // localhost:3000/api
 // const BASEURL = "http://localhost:3000/api";
-const BASEURL = "/api";
+const BASEURL = "https://ramas-url-shortener.herokuapp.com/api";
 
 // Generates a new id and saves it in the database
 router.post("/", (req, res) => {

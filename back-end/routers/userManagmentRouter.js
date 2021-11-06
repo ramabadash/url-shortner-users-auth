@@ -7,7 +7,7 @@ const {isValidHttpUrl, checkNewUser, checkCustomWord} = require("./helpers");
 
 // localhost:3000/users
 // const BASEURL = "http://localhost:3000/api";
-const BASEURL = "/api";
+const BASEURL = "https://ramas-url-shortener.herokuapp.com/api";
 
 //Generate custom short url
 router.post("/" ,(req, res) => {
