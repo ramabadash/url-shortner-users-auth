@@ -11,4 +11,23 @@ async function generateId(userName) {
     .catch((error) => false);
 }
 
-module.exports = { generateId };
+//Increases the url entry counter each time you enter it
+async function updateUrlGetCount(id, userName) {
+  try {
+    console.log('yes');
+    await UrlData.find({ userName, 'short-url-id': id })
+      .then((urlDataArr) => {
+        const urlDataObj = urlDataArr[0];
+        urlDataObj.getCount++;
+        urlDataObj
+          .save()
+          .then(() => {})
+          .catch((error) => next({ status: error.status, messege: error.messege }));
+      })
+      .catch((error) => console.log(error));
+  } catch (error) {
+    throw { status: error.status, messege: error.messege };
+  }
+}
+
+module.exports = { generateId, updateUrlGetCount };
