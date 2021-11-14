@@ -1,8 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const path = require('path');
-const fs = require('fs');
-const { updateUrlGetCount } = require('./helpers');
 const { isValidHttpUrl, checkLongUrlByUserName } = require('../middlewares/validator');
 const { createAndSaveNewUrl, redirectShortUrl } = require('../controller/urlData');
 
