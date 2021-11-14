@@ -21,13 +21,13 @@ const UrlDataSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
-  username: {
+  userName: {
     type: String,
     required: true,
     trim: true,
   },
   'short-url-id': {
-    type: Number,
+    type: String,
     required: true,
     trim: true,
   },
