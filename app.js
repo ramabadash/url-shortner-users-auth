@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 const app = express();
 const PORT = process.env.PORT || 3000;
 require('dotenv').config();
@@ -30,7 +31,7 @@ app.use(
 );
 
 app.use(express.json()); // parses requests as json
-
+app.use(cookieParser());
 //Home Page
 app.use('/', express.static(`./front-end/dist`));
 app.get('/', (req, res) => {
