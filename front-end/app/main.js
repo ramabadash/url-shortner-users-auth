@@ -40,28 +40,39 @@ const customSubmitBtn = document.getElementById('custom-submitBtn');
 const historyDiv = document.getElementById('history-info');
 const historyBtn = document.getElementById('history-btn');
 
+//Form
 const loginBtnNew = document.getElementById('login-btn-new');
 const signUpButton = document.getElementById('signup-btn-new');
+const userNameSignUp = document.getElementById('userName-input-login');
+const emailSignUp = document.getElementById('email-input-login');
+const passwordSignUp = document.getElementById('password-input-login');
 
-/*---------- EVENT LISTENERS ----------*/
+/*---------- LOGIN EVENTS ----------*/
 //Login events
 function showPage() {
   document.querySelector('.entry-form').style.display = 'none';
   document.querySelector('#page').style.display = 'block';
 }
+
 loginBtnNew.addEventListener('click', showPage);
-signUpButton.addEventListener('click', showPage);
 
-//Login events
-loginBtn.addEventListener('click', () => {
-  userNameInput.setAttribute('disabled', true);
-  helloHeader.textContent = `Hello ${userNameInput.value} !`;
-});
-swichBtn.addEventListener('click', () => {
-  userNameInput.removeAttribute('disabled');
-  clearHistoryFromDom();
-});
+signUpButton.addEventListener('click', signUp);
 
+//SignUp
+async function signUp() {
+  try {
+    const userName = userNameSignUp.value;
+    const email = emailSignUp.value;
+    const password = passwordSignUp.value;
+    const response = await axios.post(`${BASEURL}/entry/signUp/`, { userName, password, email });
+    userNameInput.value = response.data;
+    showPage();
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+/*---------- EVENT LISTENERS ----------*/
 //Network events
 submitBtn.addEventListener('click', postUrl);
 statsBtn.addEventListener('click', getStats);
