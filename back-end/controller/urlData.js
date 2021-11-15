@@ -49,3 +49,24 @@ exports.redirectShortUrl = async (req, res, next) => {
     next({ status: error.status, messege: error.messege });
   }
 };
+
+//Get stats about urlData by userName and id
+exports.getUrlStats = async (req, res, next) => {
+  try {
+    const { userName, id } = req.params;
+    UrlData.find({ userName, 'short-url-id': id }).then((urlDataArr) => {
+      if (urlDataArr.length === 0) throw { status: 400, messege: 'No such URL on our data base' };
+      else {
+        const urlDataObj = urlDataArr[0];
+        res.send({
+          creationDate: urlDataObj.date,
+          redirectCount: urlDataObj.getCount,
+          originalUrl: urlDataObj.longUrl,
+          id: urlDataObj['short-url-id'],
+        });
+      }
+    });
+  } catch (error) {
+    next({ status: error.status, messege: error.messege });
+  }
+};
