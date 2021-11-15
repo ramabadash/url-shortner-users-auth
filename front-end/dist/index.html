@@ -15,18 +15,20 @@
 
   <body>
     <div class="entry-form">
-      <div id="signup-form" class="form">
-        <h1>SIGNUP</h1>
-        <input placeholder="User Name" id="userName-input-login">
-        <input type="email" placeholder="Email" id="email-input-login">
-        <input type="password" placeholder="Password" id="password-input-login">
-          <button class="form-btn" id="signup-btn-new">SignUp</button>
-      </div>
       <div id="login-form" class="form">
         <h1>LOGIN</h1>
         <input placeholder="User Name" id="userName-input-signup">
         <input type="password" placeholder="Password" id="password-input-signup">
           <button class="form-btn" id="login-btn-new">Login</button>
+          <button class="form-btn" id="show-signUp">Go to Sign-Up</button>
+      </div>
+      <div id="signup-form" class="form hide">
+        <h1>SIGNUP</h1>
+        <input placeholder="User Name" id="userName-input-login">
+        <input type="email" placeholder="Email" id="email-input-login">
+        <input type="password" placeholder="Password" id="password-input-login">
+          <button class="form-btn" id="signup-btn-new">SignUp</button>
+          <button class="form-btn" id="show-login">Go to login</button>
       </div>
     </div>
 

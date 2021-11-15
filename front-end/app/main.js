@@ -41,13 +41,28 @@ const historyDiv = document.getElementById('history-info');
 const historyBtn = document.getElementById('history-btn');
 
 //Form
+const loginForm = document.getElementById('login-form');
+const signupForm = document.getElementById('signup-form');
+
+const showLogin = document.getElementById('show-login');
 const loginBtnNew = document.getElementById('login-btn-new');
+
+const showSignUp = document.getElementById('show-signUp');
 const signUpButton = document.getElementById('signup-btn-new');
 const userNameSignUp = document.getElementById('userName-input-login');
 const emailSignUp = document.getElementById('email-input-login');
 const passwordSignUp = document.getElementById('password-input-login');
 
 /*---------- LOGIN EVENTS ----------*/
+// Switch screens
+showSignUp.addEventListener('click', () => {
+  signupForm.classList.toggle('hide');
+  loginForm.classList.toggle('hide');
+});
+showLogin.addEventListener('click', () => {
+  signupForm.classList.toggle('hide');
+  loginForm.classList.toggle('hide');
+});
 //Login events
 function showPage() {
   document.querySelector('.entry-form').style.display = 'none';
