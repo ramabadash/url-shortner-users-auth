@@ -8,13 +8,14 @@ async function generateId(userName) {
       if (urlDataObj) return id;
       else generateId(userName); //The id already exists, create a new one
     })
-    .catch((error) => false);
+    .catch((error) => {
+      return false;
+    });
 }
 
 //Increases the url entry counter each time you enter it
 async function updateUrlGetCount(id, userName) {
   try {
-    console.log('yes');
     await UrlData.find({ userName, 'short-url-id': id })
       .then((urlDataArr) => {
         const urlDataObj = urlDataArr[0];
@@ -24,7 +25,7 @@ async function updateUrlGetCount(id, userName) {
           .then(() => {})
           .catch((error) => next({ status: error.status, messege: error.messege }));
       })
-      .catch((error) => console.log(error));
+      .catch((error) => next({ status: error.status, messege: error.messege }));
   } catch (error) {
     throw { status: error.status, messege: error.messege };
   }
