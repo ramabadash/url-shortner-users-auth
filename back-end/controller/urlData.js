@@ -10,7 +10,7 @@ exports.createAndSaveNewUrl = async (req, res, next) => {
     const { validatedShortUrl } = req;
     // Does the url was shorten before
     if (validatedShortUrl) {
-      res.status(200).send(validatedShortUrl).end();
+      return res.status(200).send(validatedShortUrl).end();
     } else {
       //Generate and save new short URL
       const { longUrl, userName } = req.body;
@@ -30,10 +30,50 @@ exports.createAndSaveNewUrl = async (req, res, next) => {
         .save()
         .then(() => res.status(200).send(shortUrl))
         .catch((error) => {
-          console.log(error);
           next({ status: error.status, messege: error.messege });
         });
     }
+  } catch (error) {
+    next({ status: error.status, messege: error.messege });
+  }
+};
+
+// create and save new custom urlData
+exports.createAndSaveCustomNewUrl = async (req, res, next) => {
+  try {
+    const { longUrl, userName, customWord } = req.body;
+    const { validatedShortUrl } = req;
+    if (validatedShortUrl) {
+      return res.status(200).send(validatedShortUrl).end();
+    } else {
+      const id = customWord;
+      const shortUrl = `${BASEURL}/${userName}/${id}`;
+      // Create All the data to save about the url
+      const newUrlData = new UrlData({
+        longUrl,
+        shortUrl,
+        date: moment().format('llll'),
+        getCount: 0,
+        userName,
+        'short-url-id': id,
+      });
+      // Save the data
+      newUrlData
+        .save()
+        .then(() => {
+          console.log('save');
+          return res.status(200).send(shortUrl).end();
+        })
+        .catch((error) => {
+          console.log('catch save' + error);
+          next({ status: error.status, messege: error.messege });
+        });
+    }
+  } catch (error) {
+    throw { status: error.status, messege: error.messege };
+  }
+};
+
 //Receives a request from a short URL and redirects it to the original site (long URL), base on the DB
 exports.redirectShortUrl = async (req, res, next) => {
   try {
