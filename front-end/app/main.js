@@ -40,7 +40,18 @@ const customSubmitBtn = document.getElementById('custom-submitBtn');
 const historyDiv = document.getElementById('history-info');
 const historyBtn = document.getElementById('history-btn');
 
+const loginBtnNew = document.getElementById('login-btn-new');
+const signUpButton = document.getElementById('signup-btn-new');
+
 /*---------- EVENT LISTENERS ----------*/
+//Login events
+function showPage() {
+  document.querySelector('.entry-form').style.display = 'none';
+  document.querySelector('#page').style.display = 'block';
+}
+loginBtnNew.addEventListener('click', showPage);
+signUpButton.addEventListener('click', showPage);
+
 //Login events
 loginBtn.addEventListener('click', () => {
   userNameInput.setAttribute('disabled', true);
