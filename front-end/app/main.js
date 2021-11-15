@@ -1,4 +1,5 @@
 import './styles/style.css';
+import './styles/login.css';
 
 /*---------- VARIIABLES DECLARATION ----------*/
 // const BASEURL = "http://localhost:3000";
