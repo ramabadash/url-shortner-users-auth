@@ -1,5 +1,4 @@
 const UrlData = require('../models/urlData');
-const BASEURL = 'https://ramas-url-shortener.herokuapp.com/api';
 
 //Checks if the url is valid
 exports.isValidHttpUrl = (req, res, next) => {
