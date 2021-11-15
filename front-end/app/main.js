@@ -44,7 +44,7 @@ const historyBtn = document.getElementById('history-btn');
 const loginForm = document.getElementById('login-form');
 const signupForm = document.getElementById('signup-form');
 
-const showLogin = document.getElementById('show-login');
+const showLoginBtn = document.getElementById('show-login');
 const loginBtnNew = document.getElementById('login-btn-new');
 
 const showSignUp = document.getElementById('show-signUp');
@@ -55,19 +55,23 @@ const passwordSignUp = document.getElementById('password-input-login');
 
 /*---------- LOGIN EVENTS ----------*/
 // Switch screens
+
 showSignUp.addEventListener('click', () => {
   signupForm.classList.toggle('hide');
   loginForm.classList.toggle('hide');
 });
-showLogin.addEventListener('click', () => {
+//Show login
+showLoginBtn.addEventListener('click', showLogin);
+function showLogin() {
   signupForm.classList.toggle('hide');
   loginForm.classList.toggle('hide');
-});
-//Login events
+}
+
 function showPage() {
   document.querySelector('.entry-form').style.display = 'none';
   document.querySelector('#page').style.display = 'block';
 }
+//Login events
 
 loginBtnNew.addEventListener('click', showPage);
 
@@ -81,7 +85,7 @@ async function signUp() {
     const password = passwordSignUp.value;
     const response = await axios.post(`${BASEURL}/entry/signUp/`, { userName, password, email });
     userNameInput.value = response.data;
-    showPage();
+    showLogin();
   } catch (error) {
     console.log(error);
   }
