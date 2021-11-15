@@ -18,6 +18,7 @@ mongoose
 const { errorHandlerMiddleware } = require('./back-end/middlewares/errorHandler');
 
 //Routers
+const userEntryRouter = require('./back-end/routers/usersEntry');
 const urlsRouter = require('./back-end/routers/urlsRouter');
 const statsRouter = require('./back-end/routers/statsRouter');
 const userManagmentRouter = require('./back-end/routers/userManagmentRouter');
@@ -41,6 +42,7 @@ app.get('/404/notfound', (req, res) => {
   res.sendFile(__dirname + '/front-end/dist/notFound.html');
 });
 
+app.use('/entry', userEntryRouter);
 app.use('/api', urlsRouter);
 app.use('/statistic', statsRouter);
 app.use('/users', userManagmentRouter);
