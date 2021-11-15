@@ -30,8 +30,8 @@ exports.signUp = async (req, res, next) => {
 exports.login = async (req, res, next) => {
   try {
     //Check user name details
-    const { userName, password, email } = req.body;
-    const userObj = await User.find({ userName, password, email });
+    const { userName, password } = req.body;
+    const userObj = await User.find({ userName, password });
     if (userObj.length === 0) {
       next({ status: 401, messege: 'Wrong details' });
       return;
@@ -42,7 +42,6 @@ exports.login = async (req, res, next) => {
       return res.status(200).cookie('token', token).send(true);
     }
   } catch (error) {
-    console.log(error);
     next({ status: error.status, messege: error.messege });
   }
 };

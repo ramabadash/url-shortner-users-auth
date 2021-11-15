@@ -46,12 +46,14 @@ const signupForm = document.getElementById('signup-form');
 
 const showLoginBtn = document.getElementById('show-login');
 const loginBtnNew = document.getElementById('login-btn-new');
+const userNameInputLogin = document.getElementById('userName-input-login');
+const passwordInputLogin = document.getElementById('password-input-login');
 
 const showSignUp = document.getElementById('show-signUp');
 const signUpButton = document.getElementById('signup-btn-new');
-const userNameSignUp = document.getElementById('userName-input-login');
-const emailSignUp = document.getElementById('email-input-login');
-const passwordSignUp = document.getElementById('password-input-login');
+const userNameSignUp = document.getElementById('userName-input-signup');
+const emailSignUp = document.getElementById('email-input-signup');
+const passwordSignUp = document.getElementById('password-input-signup');
 
 /*---------- LOGIN EVENTS ----------*/
 // Switch screens
@@ -73,21 +75,34 @@ function showPage() {
 }
 //Login events
 
-loginBtnNew.addEventListener('click', showPage);
-
-signUpButton.addEventListener('click', signUp);
-
 //SignUp
+signUpButton.addEventListener('click', signUp);
 async function signUp() {
   try {
     const userName = userNameSignUp.value;
     const email = emailSignUp.value;
     const password = passwordSignUp.value;
     const response = await axios.post(`${BASEURL}/entry/signUp/`, { userName, password, email });
-    userNameInput.value = response.data;
     showLogin();
   } catch (error) {
     console.log(error);
+  }
+}
+//Login
+loginBtnNew.addEventListener('click', login);
+async function login() {
+  try {
+    const userName = userNameInputLogin.value;
+    const password = passwordInputLogin.value;
+    const response = await axios.post(`${BASEURL}/entry/login/`, {
+      userName,
+      password,
+    });
+    console.log(response.data);
+    showPage();
+    userNameInput.value = userName;
+  } catch (error) {
+    errorMessege(error.response.data.error, loginForm);
   }
 }
 
