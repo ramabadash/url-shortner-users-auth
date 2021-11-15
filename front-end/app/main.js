@@ -156,6 +156,7 @@ async function postUrl() {
 
     urlInput.value = '';
   } catch (error) {
+    console.log(error);
     errorMessege(error.response.data.error, errorDiv);
     urlInput.value = '';
   }
@@ -172,14 +173,10 @@ async function getStats() {
     const splitUrlArr = shortUrl.split('/');
     const urlId = splitUrlArr[splitUrlArr.length - 1];
     //API request
-    const response = await axios.get(
-      `${BASEURL}/statistic/${userName}/${urlId}`
-    );
+    const response = await axios.get(`${BASEURL}/statistic/${userName}/${urlId}`);
     const statsObj = response.data;
     //Append text to the elements
-    document
-      .querySelectorAll('.stats-label')
-      .forEach((element) => element.classList.toggle('hide'));
+    document.querySelectorAll('.stats-label').forEach((element) => element.classList.toggle('hide'));
     creationDateInfo.textContent = `${statsObj.creationDate}`;
     redirectCountInfo.textContent = `${statsObj.redirectCount}`;
     originalUrlInfo.textContent = `${statsObj.originalUrl}`;
@@ -250,16 +247,8 @@ async function generateHistoryToDom() {
       //Has history - generate elements
       for (const dataObj of historyArr) {
         const historyPartDiv = createElement('div', '', 'history-part');
-        const shortUrlElem = createElement(
-          'label',
-          dataObj.date,
-          'history-date'
-        );
-        const dateElem = createElement(
-          'label',
-          dataObj.shortUrl,
-          'history-url'
-        );
+        const shortUrlElem = createElement('label', dataObj.date, 'history-date');
+        const dateElem = createElement('label', dataObj.shortUrl, 'history-url');
         historyPartDiv.appendChild(shortUrlElem);
         historyPartDiv.appendChild(dateElem);
         historyDiv.appendChild(historyPartDiv);
@@ -271,9 +260,7 @@ async function generateHistoryToDom() {
 }
 //
 function clearHistoryFromDom() {
-  document
-    .querySelectorAll('#history-info>div')
-    .forEach((elem) => elem.remove());
+  document.querySelectorAll('#history-info>div').forEach((elem) => elem.remove());
 }
 //General create element function
 function createElement(tagName, textContent, className) {
@@ -284,9 +271,7 @@ function createElement(tagName, textContent, className) {
 }
 //Clean old information in stats area
 function cleanStats() {
-  document
-    .querySelectorAll('.stats-label')
-    .forEach((element) => element.classList.add('hide'));
+  document.querySelectorAll('.stats-label').forEach((element) => element.classList.add('hide'));
   creationDateInfo.textContent = '';
   redirectCountInfo.textContent = '';
   originalUrlInfo.textContent = '';
