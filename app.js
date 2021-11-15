@@ -15,9 +15,7 @@ mongoose
   .catch((error) => console.log(error));
 
 //MiddleWares
-const {
-  errorHandlerMiddleware,
-} = require('./back-end/middlewares/errorHandler');
+const { errorHandlerMiddleware } = require('./back-end/middlewares/errorHandler');
 
 //Routers
 const urlsRouter = require('./back-end/routers/urlsRouter');
