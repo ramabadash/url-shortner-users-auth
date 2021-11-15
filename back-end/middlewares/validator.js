@@ -19,12 +19,17 @@ exports.isValidHttpUrl = (req, res, next) => {
 exports.checkLongUrlByUserName = async (req, res, next) => {
   try {
     const { longUrl, userName } = req.body;
-    const urlData = await UrlData.find({ userName, longUrl });
-    if (urlData !== null) {
-      //was shorten before, pass the short url next
-      req.validatedShortUrl = urlData[0].shortUrl; // pass the old shorten url next
-    }
-    next();
+    await UrlData.find({ userName, longUrl })
+      .then((urlData) => {
+        if (urlData.length !== 0) {
+          //was shorten before, pass the short url next
+          req.validatedShortUrl = urlData[0].shortUrl; // pass the old shorten url next
+        }
+        next();
+      })
+      .catch((error) => {
+        next({ status: error.status, messege: error.messege });
+      });
   } catch (error) {
     throw { status: error.status, messege: error.messege };
   }
