@@ -2,8 +2,8 @@ const UrlData = require('../models/urlData');
 const { generateId, updateUrlGetCount } = require('./helpers');
 const moment = require('moment');
 
-const BASEURL = 'https://ramas-url-shortener.herokuapp.com/api';
-
+// const BASEURL = 'https://ramas-url-shortener.herokuapp.com/api';
+const BASEURL = 'http://localhost:3000/api';
 // create and save new urlData
 exports.createAndSaveNewUrl = async (req, res, next) => {
   try {
@@ -108,5 +108,29 @@ exports.getUrlStats = async (req, res, next) => {
     });
   } catch (error) {
     next({ status: error.status, messege: error.messege });
+  }
+};
+
+//Get user history
+exports.getUserHistory = async (req, res, next) => {
+  try {
+    const { userName } = req.params;
+    UrlData.find({ userName })
+      .then((currentData) => {
+        const historyObjArr = [];
+        //Insert date and short URL from every urlData object
+        for (let url in currentData) {
+          const currentUrlData = {};
+          currentUrlData['shortUrl'] = currentData[url]['shortUrl'];
+          currentUrlData['date'] = currentData[url]['date'];
+          historyObjArr.push(currentUrlData);
+        }
+        res.send(historyObjArr);
+      })
+      .catch((error) => {
+        next({ status: error.status, messege: error.messege });
+      });
+  } catch (error) {
+    throw { status: error.status, messege: error.messege };
   }
 };
