@@ -12,7 +12,7 @@ const UrlDataSchema = new mongoose.Schema({
     trim: true,
   },
   date: {
-    type: Date, //check how it fits to moment lib - moment().format('llll')
+    type: String,
     required: true,
     trim: true,
   },
