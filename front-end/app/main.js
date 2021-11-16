@@ -1,5 +1,4 @@
 import './styles/style.css';
-import './styles/login.css';
 
 /*---------- VARIIABLES DECLARATION ----------*/
 // const BASEURL = "http://localhost:3000";
@@ -14,8 +13,6 @@ const usersBtn = document.getElementById('users-nevBar');
 const usersDiv = document.getElementById('usres-div');
 
 //UserName
-const loginBtn = document.getElementById('login-btn');
-const swichBtn = document.getElementById('swich-btn');
 const userNameInput = document.getElementById('userName-input');
 
 //Answer
@@ -39,72 +36,6 @@ const customWordInput = document.getElementById('custom-word_input');
 const customSubmitBtn = document.getElementById('custom-submitBtn');
 const historyDiv = document.getElementById('history-info');
 const historyBtn = document.getElementById('history-btn');
-
-//Form
-const loginForm = document.getElementById('login-form');
-const signupForm = document.getElementById('signup-form');
-
-const showLoginBtn = document.getElementById('show-login');
-const loginBtnNew = document.getElementById('login-btn-new');
-const userNameInputLogin = document.getElementById('userName-input-login');
-const passwordInputLogin = document.getElementById('password-input-login');
-
-const showSignUp = document.getElementById('show-signUp');
-const signUpButton = document.getElementById('signup-btn-new');
-const userNameSignUp = document.getElementById('userName-input-signup');
-const emailSignUp = document.getElementById('email-input-signup');
-const passwordSignUp = document.getElementById('password-input-signup');
-
-/*---------- LOGIN EVENTS ----------*/
-// Switch screens
-
-showSignUp.addEventListener('click', () => {
-  signupForm.classList.toggle('hide');
-  loginForm.classList.toggle('hide');
-});
-//Show login
-showLoginBtn.addEventListener('click', showLogin);
-function showLogin() {
-  signupForm.classList.toggle('hide');
-  loginForm.classList.toggle('hide');
-}
-
-function showPage() {
-  document.querySelector('.entry-form').style.display = 'none';
-  document.querySelector('#page').style.display = 'block';
-}
-//Login events
-
-//SignUp
-signUpButton.addEventListener('click', signUp);
-async function signUp() {
-  try {
-    const userName = userNameSignUp.value;
-    const email = emailSignUp.value;
-    const password = passwordSignUp.value;
-    const response = await axios.post(`${BASEURL}/entry/signUp/`, { userName, password, email });
-    showLogin();
-  } catch (error) {
-    console.log(error);
-  }
-}
-//Login
-loginBtnNew.addEventListener('click', login);
-async function login() {
-  try {
-    const userName = userNameInputLogin.value;
-    const password = passwordInputLogin.value;
-    const response = await axios.post(`${BASEURL}/entry/login/`, {
-      userName,
-      password,
-    });
-    console.log(response.data);
-    showPage();
-    userNameInput.value = userName;
-  } catch (error) {
-    errorMessege(error.response.data.error, loginForm);
-  }
-}
 
 /*---------- EVENT LISTENERS ----------*/
 //Network events
