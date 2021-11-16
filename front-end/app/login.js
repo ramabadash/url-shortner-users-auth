@@ -27,3 +27,19 @@ function showLogin() {
   signupForm.classList.toggle('hide');
   loginForm.classList.toggle('hide');
 }
+
+//Login events
+
+//SignUp
+signUpButton.addEventListener('click', signUp);
+async function signUp() {
+  try {
+    const userName = userNameSignUp.value;
+    const email = emailSignUp.value;
+    const password = passwordSignUp.value;
+    const response = await axios.post(`${BASEURL}/entry/signUp/`, { userName, password, email });
+    showLogin();
+  } catch (error) {
+    errorMessege(error.response.data.error, signupForm);
+  }
+}
