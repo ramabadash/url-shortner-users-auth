@@ -3,6 +3,21 @@ const jwt = require('jsonwebtoken');
 const BASEURL = 'http://localhost:8080';
 const bcrypt = require('bcrypt');
 
+exports.findUserName = (req, res, next) => {
+  try {
+    const token = req.cookies.token;
+    jwt.verify(token, process.env.SECRET, (err, user) => {
+      if (err) {
+        return res.status(301).header('Location', '/').end();
+      } else {
+        return res.status(200).send(user.user.userName).end();
+      }
+    });
+  } catch (error) {
+    next({ status: error.status, messege: error.messege });
+  }
+};
+
 //Sign up
 exports.signUp = async (req, res, next) => {
   try {

@@ -163,8 +163,19 @@ usersBtn.addEventListener('click', () => {
   cleanAnswerUrl();
   clearHistoryFromDom();
 });
+//Get userName by token
+window.addEventListener('load', getUserName);
 
 /*---------- NETWORK ----------*/
+// Get userName
+async function getUserName() {
+  try {
+    const response = await axios.get(`${BASEURL}/entry/username`);
+    userNameInput.value = response.data;
+  } catch (error) {
+    errorMessege(error.response.data.error, errorDiv);
+  }
+}
 //Get User History
 async function getUserHistory() {
   try {
