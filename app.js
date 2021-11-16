@@ -17,6 +17,7 @@ mongoose
 
 //MiddleWares
 const { errorHandlerMiddleware } = require('./back-end/middlewares/errorHandler');
+const { checkTokenAuth } = require('./back-end/middlewares/validator');
 
 //Routers
 const userEntryRouter = require('./back-end/routers/usersEntry');
@@ -29,7 +30,6 @@ app.use(
     origin: '*',
   })
 );
-
 app.use(express.json()); // parses requests as json
 app.use(cookieParser());
 

@@ -1,4 +1,22 @@
 const UrlData = require('../models/urlData');
+const jwt = require('jsonwebtoken');
+
+// Check if has cookie token and token is valid
+exports.checkTokenAuth = (req, res, next) => {
+  const token = req.cookies.token;
+  if (!token) {
+    return res.status(301).header('Location', '/').end();
+  } else {
+    jwt.verify(token, process.env.SECRET, (err, user) => {
+      if (err) {
+        return res.status(301).header('Location', '/').end();
+      } else {
+        //enter userName to req
+        next();
+      }
+    });
+  }
+};
 
 //Checks if the url is valid
 exports.isValidHttpUrl = (req, res, next) => {
