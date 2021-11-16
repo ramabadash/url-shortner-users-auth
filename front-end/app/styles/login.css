@@ -1,9 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo&family=Oxygen&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+body {
+  background-image: linear-gradient(315deg, #829196 0%, #c1cdd6 74%);
+  font-family: 'Staatliches', cursive;
+  text-align: center;
+}
+h1 {
+  font-family: 'Staatliches', cursive;
+  letter-spacing: 4px;
+  font-size: 3em;
+  color: whitesmoke;
+  text-align: center;
+}
 .entry-form {
   background-color: #222;
-  height: 60%;
-  width: 50%;
+  height: 75%;
+  width: 40%;
   padding: 1em;
-  margin-left: 25%;
+  margin-left: 30%;
   margin-top: 10%;
 }
 .form {
@@ -42,4 +57,12 @@
 
 .hide {
   display: none;
+}
+
+/*---------- ERROR ----------*/
+.error-messege {
+  background-image: linear-gradient(315deg, #968282 0%, #d6c1c1 74%);
+  color: #de463b;
+  font-size: 2em;
+  margin: 1em;
 }

@@ -54,28 +54,12 @@ li a:hover:not(.active) {
   background-color: #ffc421;
 }
 
-#login-btn,
-#swich-btn {
-  margin: 0.75em;
-  background-color: #ffc421;
-  cursor: pointer;
-  font-size: 1em;
-  font-family: 'Staatliches', cursive;
-  letter-spacing: 2px;
-  border: 2px solid black;
-  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.4);
-}
-#login-btn:hover,
-#swich-btn:hover {
-  transform: translateY(-5px);
-  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.4);
-}
-
 #userName-input {
   font-family: 'Staatliches', cursive;
   font-size: 1em;
-  width: 15em;
-  height: 75%;
+  width: 10em;
+  height: 80%;
+  margin-top: 10%;
   text-align: center;
   border-radius: 5em;
 }
