@@ -11,16 +11,13 @@ exports.signUp = async (req, res, next) => {
     if (await User.exists({ userName })) {
       throw { status: 400, messege: 'User Name is taken' };
     }
-    User.create({ userName, password, email })
-      .then((newUser) => {
-        newUser
-          .save()
-          .then(() => res.status(200).send(userName))
-          .catch((error) => {
-            next({ status: error.status, messege: error.messege });
-          });
-      })
-      .catch((error) => next({ status: error.status, messege: error.messege }));
+    const user = new User({ userName, password, email });
+    user
+      .save()
+      .then(() => res.status(200).send(userName))
+      .catch((error) => {
+        next({ status: error.status, messege: error.messege });
+      });
   } catch (error) {
     next({ status: error.status, messege: error.messege });
   }
