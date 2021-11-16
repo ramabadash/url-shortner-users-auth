@@ -43,3 +43,20 @@ async function signUp() {
     errorMessege(error.response.data.error, signupForm);
   }
 }
+//Login
+loginBtnNew.addEventListener('click', login);
+async function login() {
+  try {
+    console.log('login');
+    const userName = userNameInputLogin.value;
+    const password = passwordInputLogin.value;
+    const response = await axios.post(`${BASEURL}/entry/login/`, {
+      userName,
+      password,
+    });
+    window.location.replace(response.data);
+  } catch (error) {
+    errorMessege(error.response.data.error, loginForm);
+  }
+}
+

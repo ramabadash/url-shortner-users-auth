@@ -1,5 +1,7 @@
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
+const BASEURL = 'http://localhost:8080';
+const bcrypt = require('bcrypt');
 
 //Sign up
 exports.signUp = async (req, res, next) => {
@@ -28,24 +30,29 @@ exports.login = async (req, res, next) => {
   try {
     //Check user name details
     const { userName, password } = req.body;
-    const userObj = await User.find({ userName, password });
+    const userObj = await User.find({ userName });
     if (userObj.length === 0) {
-      next({ status: 401, messege: 'Wrong details' });
+      next({ status: 401, messege: 'Wrong username, try to sign up?' });
       return;
     } else {
-      //Generate token
-      const user = { userName };
-      const token = generateAccessToken(user);
-      return res.status(200).cookie('token', token).send(true);
+      //Check password
+      const match = await bcrypt.compare(password, userObj[0].password);
+      if (match) {
+        //Password ok - Generate token
+        const user = { userName };
+        const token = generateAccessToken(user);
+        return res.cookie('token', token).send(`${BASEURL}/home`).end();
+      } else {
+        throw { status: 401, messege: 'Wrong password!' };
+      }
     }
   } catch (error) {
     next({ status: error.status, messege: error.messege });
   }
 };
-
 //Generate token
 function generateAccessToken(user) {
-  return jwt.sign({ user }, 'secret', {
-    expiresIn: '3600s',
+  return jwt.sign({ user }, process.env.SECRET, {
+    expiresIn: '1h',
   });
 }
