@@ -32,11 +32,19 @@ app.use(
 
 app.use(express.json()); // parses requests as json
 app.use(cookieParser());
-//Home Page
-app.use('/', express.static(`./front-end/dist`));
+
+//Login Page
+app.use(express.static(`./front-end/dist`));
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + './front-end/dist/index.html');
+  res.sendFile(__dirname + '/front-end/dist/login.html');
 });
+
+//Home Page
+app.use('/home', express.static(`./front-end/dist`));
+app.get('/home', checkTokenAuth, (req, res) => {
+  res.sendFile(__dirname + '/front-end/dist/home.html');
+});
+
 //404 Not Found- page
 app.use('/', express.static(`./front-end/dist`));
 app.get('/404/notfound', (req, res) => {
