@@ -60,3 +60,12 @@ async function login() {
   }
 }
 
+/*---------- ERROR HANDLER ----------*/
+//Display Error massege
+function errorMessege(messege, element) {
+  const errorElem = document.createElement('div');
+  errorElem.textContent = `Sorry ${messege}, please try again! ❌`;
+  errorElem.classList.add('error-messege');
+  element.appendChild(errorElem);
+  setTimeout(() => errorElem.remove(), 5000);
+}
