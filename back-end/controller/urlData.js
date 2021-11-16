@@ -3,7 +3,7 @@ const { generateId, updateUrlGetCount } = require('./helpers');
 const moment = require('moment');
 
 // const BASEURL = 'https://ramas-url-shortener.herokuapp.com/api';
-const BASEURL = 'http://localhost:3000/api';
+const BASEURL = 'http://localhost:8080/api';
 // create and save new urlData
 exports.createAndSaveNewUrl = async (req, res, next) => {
   try {
