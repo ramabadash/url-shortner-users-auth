@@ -61,11 +61,9 @@ exports.createAndSaveCustomNewUrl = async (req, res, next) => {
       newUrlData
         .save()
         .then(() => {
-          console.log('save');
           return res.status(200).send(shortUrl).end();
         })
         .catch((error) => {
-          console.log('catch save' + error);
           next({ status: error.status, messege: error.messege });
         });
     }

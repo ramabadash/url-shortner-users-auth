@@ -52,10 +52,8 @@ exports.checkCustomWord = async (req, res, next) => {
     if (validatedShortUrl) {
       const splitUrl = validatedShortUrl.split('/');
       const id = splitUrl[splitUrl.length - 1]; //Get ID from last place in url
-      console.log(id + '' + customWord);
       //If Was shorten before with same word
       if (id === customWord) {
-        console.log('yes');
         next();
       }
     }
@@ -63,9 +61,7 @@ exports.checkCustomWord = async (req, res, next) => {
     // Check if custom word is in use
     UrlData.find({ userName, 'short-url-id': customWord })
       .then((urlDataObj) => {
-        console.log(urlDataObj);
         if (urlDataObj.length > 0) {
-          console.log('Word already in use');
           throw { status: 400, messege: 'Word already in use' };
         } else {
           next();
@@ -75,7 +71,6 @@ exports.checkCustomWord = async (req, res, next) => {
         throw { status: error.status, messege: error.messege };
       });
   } catch (error) {
-    console.log('custom' + error);
     throw { status: error.status, messege: error.messege };
   }
 };
