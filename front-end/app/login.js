@@ -45,6 +45,7 @@ async function signUp() {
       return;
     }
     const response = await axios.post(`${BASEURL}/entry/signUp/`, { userName, password, email });
+    successMessege(`User created successfully, Hello ${userName}!`);
     clearSignUpInputs();
     showLogin();
   } catch (error) {
@@ -79,6 +80,17 @@ function errorMessege(messege, element) {
   errorElem.classList.add('error-messege');
   element.appendChild(errorElem);
   setTimeout(() => errorElem.remove(), 5000);
+}
+/*---------- SUCCESS HANDLER ----------*/
+function successMessege(text) {
+  // Create an instance of Notyf
+  const notyf = new Notyf();
+  // Display a success notification
+  notyf.success({
+    message: text,
+    duration: 5000,
+    ripple: true,
+  });
 }
 /*---------- DOM RELATED ----------*/
 function clearSignUpInputs() {
