@@ -34,7 +34,6 @@ const UrlDataSchema = new mongoose.Schema({
   IP: [
     {
       type: String,
-      required: true,
       trim: true,
     },
   ],

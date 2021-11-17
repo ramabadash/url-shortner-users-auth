@@ -4,7 +4,6 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const app = express();
 const PORT = process.env.PORT || 8080;
-
 // DB
 const mongoose = require('mongoose');
 mongoose
@@ -24,6 +23,7 @@ const urlsRouter = require('./back-end/routers/urlsRouter');
 const statsRouter = require('./back-end/routers/statsRouter');
 const userManagmentRouter = require('./back-end/routers/userManagmentRouter');
 
+app.set('trust proxy', 'loopback');
 app.use(
   cors({
     origin: '*',

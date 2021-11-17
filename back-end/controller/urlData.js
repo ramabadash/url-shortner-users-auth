@@ -81,6 +81,7 @@ exports.redirectShortUrl = async (req, res, next) => {
       throw { status: 404, messege: 'The website does not exist' };
     } else {
       await updateUrlGetCount(id, userName); //Update the count of the time of people use the short link
+      await updateIPEnteys(id, userName, req); //Update IP's Array
       await updateLastEntey(id, userName); //Update last entry
       res.status(301).header('Location', urlDataObj[0].longUrl).end();
     }

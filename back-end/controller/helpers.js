@@ -25,6 +25,16 @@ async function updateUrlGetCount(id, userName) {
   }
 }
 
+async function updateIPEnteys(id, userName, req) {
+  try {
+    const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress; // ip address of the user
+    const answer = await UrlData.findOneAndUpdate({ userName, 'short-url-id': id }, { $push: { IP: ip } }); //Push IP to DB obj
+  } catch (error) {
+    console.log(error);
+    throw { status: error.status, messege: error.messege };
+  }
+}
+
 async function updateLastEntey(id, userName) {
   try {
     const answer = await UrlData.findOneAndUpdate(
