@@ -94,18 +94,19 @@ exports.redirectShortUrl = async (req, res, next) => {
 exports.getUrlStats = async (req, res, next) => {
   try {
     const { userName, id } = req.params;
-    UrlData.find({ userName, 'short-url-id': id }).then((urlDataArr) => {
-      if (urlDataArr.length === 0) throw { status: 400, messege: 'No such URL on our data base' };
-      else {
-        const urlDataObj = urlDataArr[0];
-        res.send({
-          creationDate: urlDataObj.date,
-          redirectCount: urlDataObj.getCount,
-          originalUrl: urlDataObj.longUrl,
-          id: urlDataObj['short-url-id'],
-        });
-      }
-    });
+    const urlDataObj = await UrlData.findOne({ userName, 'short-url-id': id });
+    if (!urlDataObj) throw { status: 400, messege: 'No such URL on our data base' };
+    //No such URL
+    else {
+      const ipsArray = await UrlData.findOne({ userName, 'short-url-id': id }).distinct('IP'); //Get artay of only uniq IP's
+      res.status(200).send({
+        creationDate: urlDataObj.date,
+        redirectCount: urlDataObj.getCount,
+        originalUrl: urlDataObj.longUrl,
+        lastEntry: urlDataObj.lastTimeUsed,
+        ips: ipsArray.length,
+      });
+    }
   } catch (error) {
     next({ status: error.status, messege: error.messege });
   }
