@@ -189,6 +189,21 @@ async function getStats() {
     statInput.value = '';
   }
 }
+//Delete url by userName and url-id
+async function deleteUrl(id, userName) {
+  try {
+    console.log(id, userName);
+    const response = await axios.delete(`${BASEURL}/users/delete`, {
+      data: {
+        userName,
+        id,
+      },
+    });
+    generateHistoryToDom();
+  } catch (error) {
+    errorMessege(error.response.data.error, errorDiv);
+  }
+}
 
 /*---------- ERROR HANDLER ----------*/
 //Display Error massege
@@ -257,8 +272,11 @@ async function generateHistoryToDom() {
         const goToSite = createElement('a', 'Go to site!', 'history-goTo');
         goToSite.setAttribute('href', dataObj.longUrl);
         const deleteBtn = createElement('button', 'Remove', 'history-delete');
-        deleteBtn.addEventListener('click', () => {
-          console.log(dataObj['short-url-id'], dataObj.userName);
+        deleteBtn.addEventListener('click', async (event) => {
+          const id = dataObj['short-url-id'];
+          const userName = dataObj.userName;
+          console.log(id, userName);
+          await deleteUrl(id, userName);
         });
 
         dataListElem.appendChild(shortLinkElem);

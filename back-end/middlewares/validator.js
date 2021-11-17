@@ -46,7 +46,6 @@ exports.isValidHttpUrl = (req, res, next) => {
   } catch (_) {
     throw { status: 400, messege: 'invalid URL' };
   }
-  console.log('http ok');
   if (url.protocol === 'http:' || url.protocol === 'https:') next();
 };
 
