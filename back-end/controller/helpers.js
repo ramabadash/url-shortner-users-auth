@@ -16,16 +16,9 @@ async function generateId(userName) {
 //Increases the url entry counter each time you enter it
 async function updateUrlGetCount(id, userName) {
   try {
-    await UrlData.find({ userName, 'short-url-id': id })
-      .then((urlDataArr) => {
-        const urlDataObj = urlDataArr[0];
-        urlDataObj.getCount++;
-        urlDataObj
-          .save()
-          .then(() => {})
-          .catch((error) => next({ status: error.status, messege: error.messege }));
-      })
-      .catch((error) => next({ status: error.status, messege: error.messege }));
+    const userObj = await UrlData.findOne({ userName, 'short-url-id': id }); //Find url data
+    const updateGetCount = userObj.getCount + 1;
+    const answer = await UrlData.findOneAndUpdate({ userName, 'short-url-id': id }, { getCount: updateGetCount }); //Update user get count
   } catch (error) {
     throw { status: error.status, messege: error.messege };
   }
