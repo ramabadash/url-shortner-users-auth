@@ -17,6 +17,22 @@ exports.checkTokenAuth = (req, res, next) => {
     });
   }
 };
+// Check token auth while going to login page - if has valid token, go to home page
+exports.loginauth = (req, res, next) => {
+  const token = req.cookies.token;
+  if (!token) {
+    next(); //Go to login
+    return;
+  }
+  jwt.verify(token, process.env.Secret, (err, user) => {
+    if (err) {
+      next(); //Go to login
+      return;
+    }
+    res.redirect('/home'); //Go to home page
+    return;
+  });
+};
 
 //Checks if the url is valid
 exports.isValidHttpUrl = (req, res, next) => {

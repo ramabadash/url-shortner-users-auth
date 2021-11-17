@@ -4,7 +4,6 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const app = express();
 const PORT = process.env.PORT || 8080;
-require('dotenv').config();
 
 // DB
 const mongoose = require('mongoose');
@@ -17,7 +16,7 @@ mongoose
 
 //MiddleWares
 const { errorHandlerMiddleware } = require('./back-end/middlewares/errorHandler');
-const { checkTokenAuth } = require('./back-end/middlewares/validator');
+const { checkTokenAuth, loginauth } = require('./back-end/middlewares/validator');
 
 //Routers
 const userEntryRouter = require('./back-end/routers/usersEntry');
