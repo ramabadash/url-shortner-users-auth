@@ -16,6 +16,6 @@ router.post('/', checkTokenAuth, isValidHttpUrl, checkLongUrlByUserName, checkCu
 router.get('/history/:userName', checkTokenAuth, getUserHistory);
 
 //Delete urlData
-router.delete('/delete', deleteUrlData);
+router.delete('/delete', checkTokenAuth, deleteUrlData);
 
 module.exports = router;
