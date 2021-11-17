@@ -31,6 +31,18 @@ const UrlDataSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
+  IP: [
+    {
+      type: String,
+      required: true,
+      trim: true,
+    },
+  ],
+  lastTimeUsed: {
+    type: String,
+    required: true,
+    trim: true,
+  },
 });
 
 const UrlData = mongoose.model('UrlData', UrlDataSchema);
