@@ -134,6 +134,8 @@ async function postCustomUrl() {
     const shortUrl = response.data;
     generateAnswerToDom(shortUrl);
 
+    successMessege('Good choice! Enjoy your new link!'); //Success messege
+
     customUrlInput.value = '';
     customWordInput.value = '';
   } catch (error) {
@@ -153,6 +155,8 @@ async function postUrl() {
     });
     const shortUrl = response.data;
     generateAnswerToDom(shortUrl); //Show answeron DOM
+
+    successMessege('Enjoy your new link!'); //Success messege
 
     urlInput.value = '';
   } catch (error) {
@@ -183,6 +187,8 @@ async function getStats() {
     lastTimeInfo.textContent = `${statsObj.lastEntry} `;
     uniqUsesInfo.textContent = `${statsObj.ips} `;
 
+    successMessege('The data is available, enjoy!'); //Success messege
+
     statInput.value = '';
   } catch (error) {
     errorMessege(error.response.data.error, errorDiv);
@@ -200,6 +206,7 @@ async function deleteUrl(id, userName) {
       },
     });
     generateHistoryToDom();
+    successMessege('Removed!'); //Success messege
   } catch (error) {
     errorMessege(error.response.data.error, errorDiv);
   }
@@ -213,6 +220,18 @@ function errorMessege(messege, element) {
   errorElem.classList.add('error-messege');
   element.appendChild(errorElem);
   setTimeout(() => errorElem.remove(), 5000);
+}
+/*---------- SUCCESS HANDLER ----------*/
+function successMessege(text) {
+  // Create an instance of Notyf
+  const notyf = new Notyf();
+  // Display a success notification
+  notyf.success({
+    message: `${text}`,
+    duration: 5000,
+    ripple: true,
+    position: { x: 'right', y: 'bottom' },
+  });
 }
 
 /*---------- DOM RELATED ----------*/
