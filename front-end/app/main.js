@@ -105,7 +105,7 @@ async function getUserName() {
     const response = await axios.get(`${BASEURL}/entry/username`);
     userNameInput.value = response.data;
   } catch (error) {
-    errorMessege(error.response.data.error, errorDiv);
+    errorMessege(error.response.data.error);
   }
 }
 //Get User History
@@ -119,7 +119,7 @@ async function getUserHistory() {
 
     return historyArr;
   } catch (error) {
-    errorMessege(error.response.data.error, errorDiv);
+    errorMessege(error.response.data.error);
   }
 }
 //Make custom URL
@@ -139,7 +139,7 @@ async function postCustomUrl() {
     customUrlInput.value = '';
     customWordInput.value = '';
   } catch (error) {
-    errorMessege(error.response.data.error, errorDiv);
+    errorMessege(error.response.data.error);
     customUrlInput.value = '';
     customWordInput.value = '';
   }
@@ -161,7 +161,7 @@ async function postUrl() {
     urlInput.value = '';
   } catch (error) {
     console.log(error);
-    errorMessege(error.response.data.error, errorDiv);
+    errorMessege(error.response.data.error);
     urlInput.value = '';
   }
 }
@@ -191,7 +191,7 @@ async function getStats() {
 
     statInput.value = '';
   } catch (error) {
-    errorMessege(error.response.data.error, errorDiv);
+    errorMessege(error.response.data.error);
     statInput.value = '';
   }
 }
@@ -208,18 +208,19 @@ async function deleteUrl(id, userName) {
     generateHistoryToDom();
     successMessege('Removed!'); //Success messege
   } catch (error) {
-    errorMessege(error.response.data.error, errorDiv);
+    errorMessege(error.response.data.error);
   }
 }
 
 /*---------- ERROR HANDLER ----------*/
 //Display Error massege
-function errorMessege(messege, element) {
-  const errorElem = document.createElement('div');
-  errorElem.textContent = `Sorry ${messege}, please try again! ❌`;
-  errorElem.classList.add('error-messege');
-  element.appendChild(errorElem);
-  setTimeout(() => errorElem.remove(), 5000);
+function errorMessege(text) {
+  const notyf = new Notyf();
+  notyf.error({
+    duration: 5000,
+    message: `Sorry, ${text}. Try again!`,
+    dismissible: true,
+  });
 }
 /*---------- SUCCESS HANDLER ----------*/
 function successMessege(text) {
