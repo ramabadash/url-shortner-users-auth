@@ -1,4 +1,5 @@
 const UrlData = require('../models/urlData');
+const moment = require('moment');
 
 //Generates a new id and checks if it is unique, if not invents a new one and repeats the process. If unique will return it
 async function generateId(userName) {
@@ -24,4 +25,15 @@ async function updateUrlGetCount(id, userName) {
   }
 }
 
-module.exports = { generateId, updateUrlGetCount };
+async function updateLastEntey(id, userName) {
+  try {
+    const answer = await UrlData.findOneAndUpdate(
+      { userName, 'short-url-id': id },
+      { lastTimeUsed: moment().format('l') }
+    ); //Update last entry
+  } catch (error) {
+    throw { status: error.status, messege: error.messege };
+  }
+}
+
+module.exports = { generateId, updateUrlGetCount, updateIPEnteys, updateLastEntey };

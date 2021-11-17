@@ -40,7 +40,6 @@ const UrlDataSchema = new mongoose.Schema({
   ],
   lastTimeUsed: {
     type: String,
-    required: true,
     trim: true,
   },
 });

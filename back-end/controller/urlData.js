@@ -1,5 +1,5 @@
 const UrlData = require('../models/urlData');
-const { generateId, updateUrlGetCount } = require('./helpers');
+const { generateId, updateUrlGetCount, updateIPEnteys, updateLastEntey } = require('./helpers');
 const moment = require('moment');
 
 // const BASEURL = 'https://ramas-url-shortener.herokuapp.com/api';
@@ -80,7 +80,8 @@ exports.redirectShortUrl = async (req, res, next) => {
     if (urlDataObj.length === 0) {
       throw { status: 404, messege: 'The website does not exist' };
     } else {
-      updateUrlGetCount(id, userName); //Update the count of the time of people use the short link
+      await updateUrlGetCount(id, userName); //Update the count of the time of people use the short link
+      await updateLastEntey(id, userName); //Update last entry
       res.status(301).header('Location', urlDataObj[0].longUrl).end();
     }
   } catch (error) {
