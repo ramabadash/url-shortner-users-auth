@@ -24,10 +24,11 @@ const answerDiv = document.getElementById('answer');
 const statsDiv = document.getElementById('statistics');
 const statInput = document.getElementById('stat_input');
 const statsBtn = document.getElementById('statsBtn');
-const idInfo = document.getElementById('id');
+const lastTimeInfo = document.getElementById('last-time-uses');
 const originalUrlInfo = document.getElementById('originalUrl');
 const redirectCountInfo = document.getElementById('redirectCount');
 const creationDateInfo = document.getElementById('creationDate');
+const uniqUsesInfo = document.getElementById('unique-uses');
 
 //User managment
 const helloHeader = document.getElementById('hello-user');
@@ -177,9 +178,10 @@ async function getStats() {
     //Append text to the elements
     document.querySelectorAll('.stats-label').forEach((element) => element.classList.toggle('hide'));
     creationDateInfo.textContent = `${statsObj.creationDate}`;
-    redirectCountInfo.textContent = `${statsObj.redirectCount}`;
+    redirectCountInfo.textContent = `${statsObj.redirectCount} times`;
     originalUrlInfo.textContent = `${statsObj.originalUrl}`;
-    idInfo.textContent = `${statsObj.id} `;
+    lastTimeInfo.textContent = `${statsObj.lastEntry} `;
+    uniqUsesInfo.textContent = `${statsObj.ips} `;
 
     statInput.value = '';
   } catch (error) {
@@ -274,7 +276,8 @@ function cleanStats() {
   creationDateInfo.textContent = '';
   redirectCountInfo.textContent = '';
   originalUrlInfo.textContent = '';
-  idInfo.textContent = '';
+  lastTimeInfo.textContent = '';
+  uniqUsesInfo.textContent = '';
 }
 //Clean old information in answer area
 function cleanAnswerUrl() {
