@@ -16,7 +16,7 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js" defer></script>
 
     <title>Login</title>
-  <script defer src="./login.js"></script></head>
+  <script defer src="../login.js"></script></head>
   <body>
     <div class="entry-form">
       <div id="login-form" class="form">
@@ -29,8 +29,10 @@
       <div id="signup-form" class="form hide">
         <h1>SIGNUP</h1>
         <input placeholder="User Name" id="userName-input-signup" />
+        <label class="form-label">UserName must include at least 1 UperCase letter+ 1 lowerCase letter+ Number</label>
         <input type="email" placeholder="Email" id="email-input-signup" />
         <input type="password" placeholder="Password" id="password-input-signup" />
+        <label class="form-label">At least 8 characters with at least 2 numericals</label>
         <button class="form-btn" id="signup-btn-new">SignUp</button>
         <button class="form-btn" id="show-login">Go to login</button>
       </div>
