@@ -3,7 +3,8 @@ const { generateId, updateUrlGetCount, updateIPEnteys, updateLastEntey } = requi
 const moment = require('moment');
 
 // const BASEURL = 'https://ramas-url-shortener.herokuapp.com/api';
-const BASEURL = 'http://localhost:8080/api';
+const BASEURL = 'https://vry-short.herokuapp.com/api';
+// const BASEURL = 'http://localhost:8080/api';
 // create and save new urlData
 exports.createAndSaveNewUrl = async (req, res, next) => {
   try {

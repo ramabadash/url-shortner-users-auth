@@ -1,6 +1,7 @@
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
-const BASEURL = 'http://localhost:8080';
+// const BASEURL = 'http://localhost:8080';
+const BASEURL = 'https://vry-short.herokuapp.com/';
 const bcrypt = require('bcrypt');
 
 exports.findUserName = (req, res, next) => {
