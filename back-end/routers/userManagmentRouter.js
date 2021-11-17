@@ -3,7 +3,7 @@ const router = express.Router();
 const path = require('path');
 const fs = require('fs');
 const { checkLongUrlByUserName, checkCustomWord, isValidHttpUrl } = require('../middlewares/validator');
-const { createAndSaveCustomNewUrl, getUserHistory } = require('../controller/urlData');
+const { createAndSaveCustomNewUrl, getUserHistory, deleteUrlData } = require('../controller/urlData');
 const { checkTokenAuth } = require('../middlewares/validator');
 
 // localhost:3000/users
@@ -14,5 +14,8 @@ router.post('/', checkTokenAuth, isValidHttpUrl, checkLongUrlByUserName, checkCu
 
 //Return array of user history by userName
 router.get('/history/:userName', checkTokenAuth, getUserHistory);
+
+//Delete urlData
+router.delete('/delete', deleteUrlData);
 
 module.exports = router;

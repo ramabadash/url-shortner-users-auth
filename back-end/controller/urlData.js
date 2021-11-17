@@ -140,3 +140,14 @@ exports.getUserHistory = async (req, res, next) => {
     throw { status: error.status, messege: error.messege };
   }
 };
+//Delete urlData by username and id
+exports.deleteUrlData = async (req, res, next) => {
+  try {
+    const { userName, id } = req.body;
+    console.log(userName, id);
+    const answer = await UrlData.findOneAndDelete({ userName, 'short-url-id': id });
+    res.send(true);
+  } catch (error) {
+    throw { status: error.status, messege: error.messege };
+  }
+};
