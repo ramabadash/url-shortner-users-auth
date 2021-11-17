@@ -5,6 +5,7 @@ body {
   background-image: linear-gradient(315deg, #829196 0%, #c1cdd6 74%);
   font-family: 'Staatliches', cursive;
   text-align: center;
+  height: 100%;
 }
 h1 {
   font-family: 'Staatliches', cursive;
@@ -13,13 +14,20 @@ h1 {
   color: whitesmoke;
   text-align: center;
 }
+h3 {
+  font-family: 'Staatliches', cursive;
+  letter-spacing: 4px;
+  font-size: 2.5em;
+  padding: 1%;
+  color: #ff6721;
+}
 .entry-form {
   background-color: #222;
-  height: 75%;
-  width: 40%;
+  height: 80%;
+  width: 30%;
   padding: 1em;
-  margin-left: 30%;
-  margin-top: 10%;
+  margin-left: 35%;
+  margin-top: 2em;
 }
 .form {
   display: flex;
@@ -43,6 +51,7 @@ h1 {
 #show-signUp,
 #show-login {
   width: 25%;
+  background-color: #ff6721;
 }
 
 .entry-form input {
@@ -50,6 +59,7 @@ h1 {
   font-size: 1em;
   width: 80%;
   margin-left: 10%;
+  margin-top: 1em;
   height: 75%;
   text-align: center;
   border-radius: 5em;
@@ -59,14 +69,17 @@ h1 {
   display: none;
 }
 .form-label {
-  color: #c1cdd6;
+  color: #8c969e;
   margin: 0.2em;
+  font-size: 1em;
+  width: 75%;
+  margin-left: 12.5%;
 }
 
 /*---------- ERROR ----------*/
 .error-messege {
   background-image: linear-gradient(315deg, #968282 0%, #d6c1c1 74%);
   color: #de463b;
-  font-size: 2em;
+  font-size: 1em;
   margin: 1em;
 }

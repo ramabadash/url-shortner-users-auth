@@ -265,7 +265,7 @@ async function generateHistoryToDom() {
       for (const dataObj of historyArr) {
         const historyPartDiv = createElement('div', '', 'history-part');
         const dataListElem = createElement('ul', '', 'history-list');
-        const shortLinkElem = createElement('li', `Link: ${dataObj.shortUrl}`, 'history-li');
+        const shortLinkElem = createElement('li', `🔗 ${dataObj.shortUrl}`, 'history-li');
         const getCountElem = createElement('li', `Used: ${dataObj.getCount} times`, 'history-li');
         const lastTimeUsedElem = createElement('li', `Last used in: ${dataObj.lastTimeUsed}`, 'history-li');
         const dateElem = createElement('li', `Create in: ${dataObj.date}`, 'history-li');
