@@ -20,7 +20,7 @@ exports.createAndSaveNewUrl = async (req, res, next) => {
       const newUrlData = new UrlData({
         longUrl,
         shortUrl,
-        date: moment().format('llll'),
+        date: moment().format('l'),
         getCount: 0,
         userName,
         'short-url-id': id,
@@ -52,7 +52,7 @@ exports.createAndSaveCustomNewUrl = async (req, res, next) => {
       const newUrlData = new UrlData({
         longUrl,
         shortUrl,
-        date: moment().format('llll'),
+        date: moment().format('l'),
         getCount: 0,
         userName,
         'short-url-id': id,
