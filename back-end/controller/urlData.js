@@ -122,8 +122,13 @@ exports.getUserHistory = async (req, res, next) => {
         //Insert date and short URL from every urlData object
         for (let url in currentData) {
           const currentUrlData = {};
-          currentUrlData['shortUrl'] = currentData[url]['shortUrl'];
-          currentUrlData['date'] = currentData[url]['date'];
+          currentUrlData.shortUrl = currentData[url].shortUrl;
+          currentUrlData.date = currentData[url].date;
+          currentUrlData.lastTimeUsed = currentData[url].lastTimeUsed;
+          currentUrlData.getCount = currentData[url].getCount;
+          currentUrlData.longUrl = currentData[url].longUrl;
+          currentUrlData['short-url-id'] = currentData[url]['short-url-id'];
+          currentUrlData.userName = currentData[url].userName;
           historyObjArr.push(currentUrlData);
         }
         res.send(historyObjArr);

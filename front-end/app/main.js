@@ -240,6 +240,7 @@ async function generateHistoryToDom() {
   try {
     clearHistoryFromDom();
     const historyArr = await getUserHistory(); //Sent API request
+    console.log(historyArr);
     //Empty history
     if (historyArr.length === 0) {
       const noHistoryElem = createElement('div', 'No history', 'error-messege');
@@ -248,10 +249,26 @@ async function generateHistoryToDom() {
       //Has history - generate elements
       for (const dataObj of historyArr) {
         const historyPartDiv = createElement('div', '', 'history-part');
-        const shortUrlElem = createElement('label', dataObj.date, 'history-date');
-        const dateElem = createElement('label', dataObj.shortUrl, 'history-url');
-        historyPartDiv.appendChild(shortUrlElem);
-        historyPartDiv.appendChild(dateElem);
+        const dataListElem = createElement('ul', '', 'history-list');
+        const shortLinkElem = createElement('li', `Link: ${dataObj.shortUrl}`, 'history-li');
+        const getCountElem = createElement('li', `Used: ${dataObj.getCount} times`, 'history-li');
+        const lastTimeUsedElem = createElement('li', `Last used in: ${dataObj.lastTimeUsed}`, 'history-li');
+        const dateElem = createElement('li', `Create in: ${dataObj.date}`, 'history-li');
+        const goToSite = createElement('a', 'Go to site!', 'history-goTo');
+        goToSite.setAttribute('href', dataObj.longUrl);
+        const deleteBtn = createElement('button', 'Remove', 'history-delete');
+        deleteBtn.addEventListener('click', () => {
+          console.log(dataObj['short-url-id'], dataObj.userName);
+        });
+
+        dataListElem.appendChild(shortLinkElem);
+        dataListElem.appendChild(getCountElem);
+        dataListElem.appendChild(lastTimeUsedElem);
+        dataListElem.appendChild(dateElem);
+        dataListElem.appendChild(goToSite);
+        dataListElem.appendChild(deleteBtn);
+
+        historyPartDiv.appendChild(dataListElem);
         historyDiv.appendChild(historyPartDiv);
       }
     }

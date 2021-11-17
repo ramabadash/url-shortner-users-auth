@@ -20,7 +20,7 @@ main {
 }
 
 /*---------- NAV-BAR ----------*/
-ul {
+#nav-bar {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -28,17 +28,17 @@ ul {
   background-color: #333;
 }
 
-li {
+#nav-bar > li {
   float: left;
   border-right: 1px solid #bbb;
   cursor: pointer;
 }
 
-li:last-child {
+#nav-bar > li:last-child {
   border-right: none;
 }
 
-li a {
+#nav-bar > li a {
   display: block;
   color: white;
   text-align: center;
@@ -46,7 +46,7 @@ li a {
   text-decoration: none;
 }
 
-li a:hover:not(.active) {
+#nav-bar > li a:hover:not(.active) {
   background-color: #111;
 }
 
@@ -326,11 +326,26 @@ legend {
   line-height: 2em;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  text-align: left;
+  text-align: center;
   margin-bottom: 1em;
   background-color: rgba(48, 136, 102, 0.3);
+  margin-top: 0.25em;
 }
+
+.history-part ul {
+  width: 95%;
+  list-style: none;
+  background-color: rgba(48, 136, 102, 0.3);
+  color: #c1cdd6;
+  display: flex;
+  justify-content: space-between;
+}
+
+.history-part li {
+  padding: 0.25em;
+  font-size: 1.25em;
+}
+
 .history-date {
   color: #ffc421;
   font-family: 'Poppins', sans-serif;
