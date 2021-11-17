@@ -41,7 +41,7 @@ async function signUp() {
     const isValidDetails = validateUserDetails(userName, password, email);
     if (isValidDetails !== true) {
       clearSignUpInputs();
-      errorMessege(isValidDetails, signupForm);
+      errorMessege(isValidDetails);
       return;
     }
     const response = await axios.post(`${BASEURL}/entry/signUp/`, { userName, password, email });
@@ -50,7 +50,7 @@ async function signUp() {
     showLogin();
   } catch (error) {
     clearSignUpInputs();
-    errorMessege(error.response.data.error, signupForm);
+    errorMessege(error.response.data.error);
   }
 }
 //Login
@@ -68,18 +68,19 @@ async function login() {
     window.location.replace(response.data);
   } catch (error) {
     clearLoginInputs();
-    errorMessege(error.response.data.error, loginForm);
+    errorMessege(error.response.data.error);
   }
 }
 
 /*---------- ERROR HANDLER ----------*/
 //Display Error massege
-function errorMessege(messege, element) {
-  const errorElem = document.createElement('div');
-  errorElem.textContent = `Sorry ${messege}, please try again! ❌`;
-  errorElem.classList.add('error-messege');
-  element.appendChild(errorElem);
-  setTimeout(() => errorElem.remove(), 5000);
+function errorMessege(text) {
+  const notyf = new Notyf();
+  notyf.error({
+    duration: 7000,
+    message: `${text}`,
+    dismissible: true,
+  });
 }
 /*---------- SUCCESS HANDLER ----------*/
 function successMessege(text) {
@@ -107,9 +108,9 @@ function clearLoginInputs() {
 //Vlidate user details
 function validateUserDetails(username, password, email) {
   if (!validateEmail(email)) {
-    return 'Not valid Email';
+    return 'Not A valid Email';
   } else if (!validateUserName(username)) {
-    return 'Not valid userName';
+    return 'Not A valid userName';
   } else if (!validatePassword(password)) {
     return 'Not A strong password';
   } else {
