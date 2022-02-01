@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://docrdsfx76ssb.cloudfront.net/static/1636730852/pages/wp-content/uploads/2021/09/Site_Basic_Popup.png"
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Heebo&family=Oxygen&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js" defer></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js" defer></script>
+
+    <title>Login</title>
+  <script defer src="../login.js"></script></head>
+  <body>
+    <h1>Welcome to -URL Shortener Microservice</h1>
+    <h3>Please signUp or Login</h3>
+    <div class="entry-form">
+      <div id="login-form" class="form">
+        <h1>LOGIN</h1>
+        <input placeholder="User Name" id="userName-input-login" />
+        <input type="password" placeholder="Password" id="password-input-login" />
+        <button class="form-btn" id="login-btn-new">Login</button>
+        <button class="form-btn" id="show-signUp">Go to Sign-Up</button>
+      </div>
+      <div id="signup-form" class="form hide">
+        <h1>SIGNUP</h1>
+        <input placeholder="User Name" id="userName-input-signup" />
+        <label class="form-label">UserName must include at least 1 UperCase letter+ 1 lowerCase letter+ Number</label>
+        <input type="email" placeholder="Email" id="email-input-signup" />
+        <input type="password" placeholder="Password" id="password-input-signup" />
+        <label class="form-label">At least 8 characters with at least 2 numericals</label>
+        <button class="form-btn" id="signup-btn-new">SignUp</button>
+        <button class="form-btn" id="show-login">Go to login</button>
+      </div>
+    </div>
+  </body>
+</html>
